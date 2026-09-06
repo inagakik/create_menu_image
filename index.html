@@ -155,6 +155,27 @@
     .panel{padding:10px}
     .controls{order:2}
   }
+  button.mini.gear{
+    flex:0 0 auto;width:auto;height:26px;border-radius:9px;padding:0 9px;
+    font-size:11px;font-weight:700;
+  }
+  .set-row.note{border-bottom:none;padding-top:2px}
+  .set-row.note .msg{flex:1;font-size:11px;line-height:1.5;color:#7b909a}
+  .set-row{
+    display:flex;align-items:center;gap:10px;padding:10px 2px;
+    border-bottom:1px solid #eef3f5;font-size:12px;color:#4a6b80;
+  }
+  .set-row>.key{flex:0 0 74px;font-weight:700;color:#315b78}
+  .set-row .val{flex:0 0 34px;font-size:11px;color:#7b909a;text-align:right}
+  .set-row input[type=range]{flex:1;accent-color:#4f7897}
+  .set-row select{
+    flex:1;padding:8px 9px;border:1px solid #c7d5dc;border-radius:10px;
+    background:#fff;font:inherit;font-size:12px;color:#294b62;
+  }
+  .seg{display:flex;gap:6px;flex:1}
+  .seg button{background:#eef4f6;color:#5f86a1;font-size:12px;padding:8px 0;flex:1;width:auto}
+  .seg button.on{background:#4f7897;color:#fff}
+  .set-note{font-size:10px;color:#8aa0ac;line-height:1.7;padding:10px 2px 2px}
 </style>
 </head>
 <body>
@@ -175,17 +196,14 @@
         <input id="headline" type="text" value="本日のランチ">
         <input id="dateText" type="date" aria-label="日付">
       </div>
-      <div class="row">
-        <input id="tagline" type="text" value="" placeholder="写真に重なる一言（1行目/空欄で非表示）">
-        <input id="taglineColor" type="color" value="#315b78" title="一言の文字色" aria-label="一言の文字色">
+      <div id="tgRows">
+      <div class="row item" id="tgrow-0"><button class="mini" type="button" data-tgdel="0" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-0" type="text" value="" placeholder="写真に重なる一言（1行目）"><button class="mini gear" type="button" data-tgset="0" title="この行の書式" aria-label="この行の書式">書式</button></div>
+      <div class="row item" id="tgrow-1"><button class="mini" type="button" data-tgdel="1" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-1" type="text" value="" placeholder="写真に重なる一言（2行目）"><button class="mini gear" type="button" data-tgset="1" title="この行の書式" aria-label="この行の書式">書式</button></div>
+      <div class="row item" id="tgrow-2"><button class="mini" type="button" data-tgdel="2" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-2" type="text" value="" placeholder="写真に重なる一言（3行目）"><button class="mini gear" type="button" data-tgset="2" title="この行の書式" aria-label="この行の書式">書式</button></div>
+      <div class="row item" id="tgrow-3"><button class="mini" type="button" data-tgdel="3" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-3" type="text" value="" placeholder="写真に重なる一言（4行目）"><button class="mini gear" type="button" data-tgset="3" title="この行の書式" aria-label="この行の書式">書式</button></div>
+      <div class="row item" id="tgrow-4"><button class="mini" type="button" data-tgdel="4" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-4" type="text" value="" placeholder="写真に重なる一言（5行目）"><button class="mini gear" type="button" data-tgset="4" title="この行の書式" aria-label="この行の書式">書式</button></div>
       </div>
-      <div class="row"><input id="tagline2" type="text" value="" placeholder="写真に重なる一言（2行目/空欄で非表示）"></div>
-      <div class="row check">
-        <label class="chk"><input id="tgStrokeOn" type="checkbox"> 縁取り</label>
-        <input id="tgStrokeColor" type="color" value="#ffffff" title="縁取りの色" aria-label="縁取りの色">
-        <label class="chk"><input id="tgBgOn" type="checkbox"> 背景色</label>
-        <input id="tgBgColor" type="color" value="#f8f3e8" title="背景の色" aria-label="背景の色">
-      </div>
+      <button class="add" id="tgAdd" type="button">+ 行を追加</button>
     </div>
 
     <div class="group">
@@ -221,9 +239,10 @@
     <div class="modal-body">
       <div class="modal-lead">やりたいことを選んでください。項目を押すと手順が開きます。</div>
       <details class="qa"><summary>日付を入れたい・消したい</summary><div class="a">「タイトル」の右にある日付欄を押すとカレンダーが開きます。選んだ日は画像上で「9月6日（日）」の形で入ります。初期値は開いた日です。日付を出したくないときは、日付欄を空にすれば非表示になります。</div></details>
-      <details class="qa"><summary>写真の上に一言メッセージを入れたい</summary><div class="a">タイトルの下にある「写真に重なる一言」の欄に入力してください。2行まで使え、空欄にすると非表示になります。</div></details>
-      <details class="qa"><summary>一言の位置を動かしたい</summary><div class="a">プレビュー上の文字をそのままドラッグしてください。2行ある場合すべてまとめて移動します。写真の枠からはみ出す手前で自動的に止まるので、切れる心配はありません。</div></details>
-      <details class="qa"><summary>写真と重なって文字が読みにくい</summary><div class="a">3つの手段があります。(1) 一言の欄の右にある色見本を押すと、カラーピッカーで文字色を変えられます。(2) 「縁取り」をチェックすると文字の外側に縁が付きます（色も選べます）。(3) 「背景色」をチェックすると、文字の後ろに角丸の帯が入ります。</div></details>
+      <details class="qa"><summary>写真の上に一言メッセージを入れたい</summary><div class="a">タイトルの下にある「写真に重なる一言」の欄に入力してください。行の左の「−」と下の「+ 行を追加」で、1行から5行まで増減できます。最後の行が空欄のときは余白も残らず非表示になり、途中の行を空欄にしたときはその行分だけ隔として使えます。</div></details>
+      <details class="qa"><summary>一言の位置を動かしたい</summary><div class="a">プレビュー上の文字をそのままドラッグしてください。2行ある場合���まとめて移動します。写真の枠からはみ出す手前で自動的に止まるので、切れる心配はありません。</div></details>
+      <details class="qa"><summary>写真と重なって文字が読みにくい</summary><div class="a">行の右の「書式」ボタンを押すと、その行だけの設定画面が開きます。(1) 文字色をカラーピッカーで変える。(2) 「縁取り」をつけて文字の外側に縁を出す（色も選べます）。(3) 「背景色」をつけて文字の後ろに角丸の帯を入れる。いずれも行ごとに別々に設定できます。</div></details>
+      <details class="qa"><summary>行ごとに文字の大きさ・フォント・寄せを変えたい</summary><div class="a">行の右の「書式」ボタンを押すと、その行の文字サイズ（14〜64）、フォント、左寄せ・中央・右寄せ、文字色、縁取り、背景色を別々に設定できます。フォント欄の「端末から読込」を押すと、このパソコンに入っているフォント（京文字やあんずもじなど）が一覧に並び、行ごとに選べます。一度読み込むと次回以降も保持されます（パソコンの Chrome / Edge のみ対応）。</div></details>
       <details class="qa"><summary>料理の数を減らしたい（1個から5個）</summary><div class="a">各行の左にある丸い「−」ボタンを押すとその項目が削除され、残った円が自動で中央揃えになります（写真の選択欄も連動）。4個以下のときは下に「+ 項目を追加」ボタンが出て、最大5個まで戻せます。削除した項目の文字と写真はクリアされます。</div></details>
       <details class="qa"><summary>円の中の文字やリボンの文字を変えたい</summary><div class="a">「リボンの文字（左）と料理名（右）」の左側の細い欄がリボンと円の中の文字、右側がリボンの下に出る料理名です。リボンの文字が長いときはリボン幅が少し伸び、料理名が長いときは自動で2行に折り返します。</div></details>
       <details class="qa"><summary>写真を入れたい・差し替えたい</summary><div class="a">「写真」の一覧で、入れたい項目の「選択」を押して画像を選んでください。選んだ写真は一覧の左にサムネイルとして表示されます。もう一度「選択」すれば差し替えです。</div></details>
@@ -233,6 +252,52 @@
       <details class="qa"><summary>位置をいじっていたら崩れてしまった</summary><div class="a">下の「写真と文字の位置をリセット」を押すと、すべての写真の位置・拡大率と一言の位置が初期状態に戻ります（写真や文字の内容は消えません）。</div></details>
       <details class="qa"><summary>完成した画像を保存して投稿したい</summary><div class="a">下の「PNG画像を書き出す」を押すと、1080 x 1080 px（Instagram向けの正方形）の画像がダウンロードされます。ファイル名は tsumugi_gohan_20260906.png のように、日付欄で選んだ日付（YYYYMMDD）が入ります。日付欄を空にしているときは書き出した日の日付になります。</div></details>
       <details class="qa"><summary>写真がどこかに送られないか心配</summary><div class="a">すべての処理はこのファイルを開いたブラウザの中だけで完結します。写真がインターネットに送信されることはありません。オフラインでも使えます。</div></details>
+    </div>
+  </div>
+</div>
+
+<div class="modal" id="tgModal" hidden>
+  <div class="modal-back" id="tgSetBack"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="tgSetTitle">
+    <div class="modal-head">
+      <strong id="tgSetTitle">1行目の書式</strong>
+      <button class="modal-close" id="tgSetClose" type="button" aria-label="閉じる">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="set-row">
+        <span class="key">文字サイズ</span>
+        <input id="tgSize" type="range" min="14" max="64" step="1" value="22" aria-label="文字サイズ">
+        <span class="val" id="tgSizeVal">22</span>
+      </div>
+      <div class="set-row">
+        <span class="key">フォント</span>
+        <select id="tgFont" aria-label="フォント"></select>
+        <button class="mini gear" id="tgFontLoad" type="button" title="この端末に入っているフォントを一覧に追加">端末から読込</button>
+      </div>
+      <div class="set-row note" id="tgFontNote" hidden><span class="key"></span><span class="msg"></span></div>
+      <div class="set-row">
+        <span class="key">揃え</span>
+        <div class="seg" id="tgAlign">
+          <button type="button" data-align="left">左寄せ</button>
+          <button type="button" data-align="center">中央</button>
+          <button type="button" data-align="right">右寄せ</button>
+        </div>
+      </div>
+      <div class="set-row">
+        <span class="key">文字色</span>
+        <input id="tgColor" type="color" value="#315b78" aria-label="文字色">
+      </div>
+      <div class="set-row">
+        <span class="key">縁取り</span>
+        <label class="chk"><input id="tgStrokeOn" type="checkbox"> つける</label>
+        <input id="tgStrokeColor" type="color" value="#ffffff" aria-label="縁取りの色">
+      </div>
+      <div class="set-row">
+        <span class="key">背景色</span>
+        <label class="chk"><input id="tgBgOn" type="checkbox"> つける</label>
+        <input id="tgBgColor" type="color" value="#f8f3e8" aria-label="背景の色">
+      </div>
+      <div class="set-note">設定はこの行だけに適用されます。「端末から読込」を押すと、このパソコンにインストール済みのフォントが選択肢に並びます（フォントファイルは同梱していません）。</div>
     </div>
   </div>
 </div>
@@ -330,31 +395,86 @@ function drawLogo(cx,cy,size){
   ctx.restore();
 }
 // message on the photo: size, line height, and padding from the photo edge
-const TG_SIZE=22, TG_LINE=34, TG_PAD=34;
+// message on the photo: every line keeps its own format
+const TG_FONTS=[
+  {id:"mincho",label:"明朝（標準）",css:'"Noto Serif JP","Yu Mincho","MS Mincho",serif'},
+  {id:"gothic",label:"ゴシック",css:'"Noto Sans JP","Yu Gothic",Meiryo,sans-serif'}
+];
+function fontCss(id){
+  if(typeof id==="string"&&id.slice(0,6)==="local:"){
+    const fam=id.slice(6).replace(/["\\]/g,"");
+    return '"'+fam+'","Noto Sans JP","Yu Gothic",sans-serif';
+  }
+  const f=TG_FONTS.find(x=>x.id===id);return f?f.css:TG_FONTS[0].css
+}
+const TG_MAX=5, TG_PAD=34;
+const tgDefault=()=>({size:22,font:"mincho",align:"right",color:"#315b78",
+  strokeOn:false,strokeColor:"#ffffff",bgOn:false,bgColor:"#f8f3e8"});
+const tgConf=[];for(let i=0;i<TG_MAX;i++)tgConf.push(tgDefault());
+let tgOrder=[0,1], tgPool=[2,3,4];
 const PHOTO_L=80, PHOTO_R=1000, PHOTO_T=190, PHOTO_B=690;
 // base spot + drag offset, always kept inside the photo frame
-function taglineBox(lines){
-  ctx.save();
-  ctx.font=`600 ${TG_SIZE}px "Noto Serif JP","Yu Mincho",serif`;
-  let maxW=0;lines.forEach(t=>{maxW=Math.max(maxW,ctx.measureText(t).width)});
-  ctx.restore();
+// rows in display order. blank rows at the end are dropped, blank rows in
+// the middle keep their line space.
+function tgLines(){
+  const rows=tgOrder.map(i=>({i,t:val("tg-"+i)}));
+  let last=-1;
+  rows.forEach((r,k)=>{if(r.t.trim())last=k});
+  return last<0?[]:rows.slice(0,last+1);
+}
+function tgMetrics(){
+  const rows=tgLines();
+  if(!rows.length)return null;
+  const items=rows.map(r=>{
+    const c=tgConf[r.i];
+    ctx.save();ctx.font=`600 ${c.size}px ${fontCss(c.font)}`;
+    const w=r.t.trim()?ctx.measureText(r.t).width:0;
+    ctx.restore();
+    return {text:r.t,conf:c,w,lh:Math.round(c.size*1.55)};
+  });
+  const maxW=items.reduce((m,it)=>Math.max(m,it.w),0);
+  const below=items.reduce((s,it,k)=>k?s+it.lh:s,0);
   const st=state.tagline;
-  const height=(lines.length-1)*TG_LINE;
   const maxRight=PHOTO_R-TG_PAD;
   const minRight=Math.min(PHOTO_L+TG_PAD+maxW,maxRight);
-  let right=Math.min(maxRight,Math.max(minRight,(PHOTO_R-TG_PAD)+st.x));
-  st.x=right-(PHOTO_R-TG_PAD);
-  const minBase=PHOTO_T+TG_PAD+TG_SIZE;
-  const maxBase=Math.max(minBase,PHOTO_B-TG_PAD-height);
-  let baseline=Math.min(maxBase,Math.max(minBase,335+st.y));
+  const right=Math.min(maxRight,Math.max(minRight,maxRight+st.x));
+  st.x=right-maxRight;
+  const first=items[0].conf.size;
+  const minBase=PHOTO_T+TG_PAD+first;
+  const maxBase=Math.max(minBase,PHOTO_B-TG_PAD-below);
+  const baseline=Math.min(maxBase,Math.max(minBase,335+st.y));
   st.y=baseline-335;
-  return {right,baseline,maxW,height};
+  return {items,maxW,below,right,left:right-maxW,baseline,top:baseline-first,first};
+}
+function drawTagline(){
+  const m=tgMetrics();
+  if(!m)return;
+  let y=m.baseline;
+  m.items.forEach(it=>{
+    const c=it.conf;
+    if(it.text.trim()){
+      const ax=c.align==="left"?m.left:(c.align==="center"?(m.left+m.right)/2:m.right);
+      if(c.bgOn){
+        const px=16, py=Math.round(c.size*0.42);
+        const x0=c.align==="left"?ax-px:(c.align==="center"?ax-it.w/2-px:ax-it.w-px);
+        ctx.save();ctx.fillStyle=c.bgColor;
+        roundedRect(ctx,x0,y-c.size-py+4,it.w+px*2,c.size+py*2,12);ctx.fill();ctx.restore();
+      }
+      ctx.save();
+      // a pale color on a bare photo needs a soft shadow
+      if(isLight(c.color)&&!c.strokeOn&&!c.bgOn){ctx.shadowColor="rgba(0,0,0,.38)";ctx.shadowBlur=10;ctx.shadowOffsetY=1;}
+      const o={align:c.align,weight:600,color:c.color,font:fontCss(c.font)};
+      if(c.strokeOn){o.stroke=c.strokeColor;o.strokeWidth=Math.max(3,Math.round(c.size/5.5));}
+      text(it.text,ax,y,c.size,o);
+      ctx.restore();
+    }
+    y+=it.lh;
+  });
 }
 function hitTagline(x,y){
-  const lines=[val("tagline"),val("tagline2")].filter(t=>t&&t.trim());
-  if(!lines.length)return false;
-  const b=taglineBox(lines);
-  return x>b.right-b.maxW-16 && x<b.right+16 && y>b.baseline-TG_SIZE-16 && y<b.baseline+b.height+16;
+  const m=tgMetrics();
+  if(!m)return false;
+  return x>m.left-16 && x<m.right+16 && y>m.top-16 && y<m.top+m.first+m.below+16;
 }
 // "#rrggbb" -> true when the color is pale
 function isLight(hex){
@@ -479,27 +599,8 @@ function draw(){
   else placeholder(540,440,920,500,"ランチプレート写真","main");
   // torn-ish white edge
   ctx.fillStyle="#f8f3e8";ctx.beginPath();ctx.moveTo(28,705);ctx.quadraticCurveTo(270,690,540,710);ctx.quadraticCurveTo(810,730,1052,704);ctx.lineTo(1052,760);ctx.lineTo(28,760);ctx.closePath();ctx.fill();
-  // handwritten message (up to two lines)
-  const tg=[val("tagline"),val("tagline2")].filter(t=>t&&t.trim());
-  const tgColor=val("taglineColor")||"#315b78";
-  if(tg.length){
-    const tb=taglineBox(tg);
-    const strokeOn=on("tgStrokeOn"), bgOn=on("tgBgOn");
-    if(bgOn){
-      // rounded plate behind the message
-      const px=18, py=14;
-      ctx.save();ctx.fillStyle=val("tgBgColor")||"#f8f3e8";
-      roundedRect(ctx,tb.right-tb.maxW-px,tb.baseline-TG_SIZE-py+4,tb.maxW+px*2,tb.height+TG_SIZE+py*2,14);
-      ctx.fill();ctx.restore();
-    }
-    ctx.save();
-    // a pale color on a bare photo needs a soft shadow; not needed with an outline or a backing plate
-    if(isLight(tgColor)&&!strokeOn&&!bgOn){ctx.shadowColor="rgba(0,0,0,.38)";ctx.shadowBlur=10;ctx.shadowOffsetY=1;}
-    const tgOpts={align:"right",weight:600,color:tgColor};
-    if(strokeOn){tgOpts.stroke=val("tgStrokeColor")||"#ffffff";tgOpts.strokeWidth=4;}
-    tg.forEach((t,i)=>text(t,tb.right,tb.baseline+i*TG_LINE,TG_SIZE,tgOpts));
-    ctx.restore();
-  }
+  // handwritten message (1-5 lines, each with its own format)
+  drawTagline();
   // menu strip
   text("MENU",540,762,25,{align:"center",weight:600,font:'"Arial",sans-serif'});
   ctx.strokeStyle="#9bb2c0";ctx.lineWidth=2;
@@ -570,11 +671,8 @@ canvas.addEventListener("wheel",e=>{
   e.preventDefault();const q=pointerPos(e);const st=pickState(q.x,q.y);
   if(st){st.scale=Math.max(.5,Math.min(3,st.scale*(e.deltaY<0?1.06:.94)));draw();}
 },{passive:false});
-["headline","dateText","tagline","tagline2","taglineColor"]
+["headline","dateText","tg-0","tg-1","tg-2","tg-3","tg-4"]
   .forEach(id=>document.getElementById(id).addEventListener("input",draw));
-["taglineColor","tgStrokeOn","tgStrokeColor","tgBgOn","tgBgColor"]
-  .forEach(id=>{const el=document.getElementById(id);
-    el.addEventListener("input",draw);el.addEventListener("change",draw);});
 ["mainLabel","soupLabel","sideLabel","saladLabel","dessertLabel",
  "mainName","soupName","sideName","saladName","dessertName"]
   .forEach(id=>document.getElementById(id).addEventListener("input",()=>{rebuildControls();draw()}));
@@ -616,6 +714,134 @@ document.getElementById("addItem").addEventListener("click",()=>{
   document.getElementById(photoDefs.find(p=>p.id===id).labelInput).focus();
 });
 renderRows();
+
+// ---- message lines: add / remove (min 1, max 5) ----
+function renderTgRows(){
+  const box=document.getElementById("tgRows");
+  tgOrder.forEach(i=>box.appendChild(document.getElementById("tgrow-"+i)));
+  for(let i=0;i<TG_MAX;i++){
+    const row=document.getElementById("tgrow-"+i), k=tgOrder.indexOf(i);
+    row.style.display=k<0?"none":"";
+    row.querySelector("button.mini").disabled=tgOrder.length<=1;
+    if(k>=0)document.getElementById("tg-"+i).placeholder=`写真に重なる一言（${k+1}行目）`;
+  }
+  document.getElementById("tgAdd").hidden=tgOrder.length>=TG_MAX;
+}
+document.querySelectorAll("button.mini[data-tgdel]").forEach(b=>{
+  b.addEventListener("click",()=>{
+    if(tgOrder.length<=1)return;
+    const i=Number(b.dataset.tgdel);
+    tgOrder=tgOrder.filter(x=>x!==i);tgPool.push(i);
+    document.getElementById("tg-"+i).value="";
+    tgConf[i]=tgDefault();
+    renderTgRows();draw();
+  });
+});
+document.getElementById("tgAdd").addEventListener("click",()=>{
+  if(tgOrder.length>=TG_MAX)return;
+  const i=tgPool.shift();
+  if(i===undefined)return;
+  document.getElementById("tg-"+i).value="";
+  tgConf[i]=tgDefault();
+  tgOrder.push(i);
+  renderTgRows();draw();
+  document.getElementById("tg-"+i).focus();
+});
+
+// ---- per-line format modal ----
+const tgModal=document.getElementById("tgModal"), tgFontSel=document.getElementById("tgFont");
+let tgEditing=0;
+const FONT_STORE="tsumugiLocalFonts";
+let localFams=[];
+try{const s=localStorage.getItem(FONT_STORE);if(s)localFams=JSON.parse(s)||[]}catch(e){localFams=[]}
+function buildFontOptions(){
+  const keep=tgFontSel.value;
+  tgFontSel.innerHTML="";
+  const g1=document.createElement("optgroup");g1.label="標準";
+  TG_FONTS.forEach(f=>{
+    const o=document.createElement("option");o.value=f.id;o.textContent=f.label;g1.appendChild(o);
+  });
+  tgFontSel.appendChild(g1);
+  if(localFams.length){
+    const g2=document.createElement("optgroup");g2.label="この端末のフォント";
+    localFams.forEach(fam=>{
+      const o=document.createElement("option");o.value="local:"+fam;o.textContent=fam;g2.appendChild(o);
+    });
+    tgFontSel.appendChild(g2);
+  }
+  tgFontSel.value=keep;
+}
+function ensureFontOption(v){
+  if(!v||tgFontSel.querySelector('option[value="'+CSS.escape(v)+'"]'))return;
+  if(v.slice(0,6)!=="local:")return;
+  localFams.push(v.slice(6));buildFontOptions();
+}
+function fontNote(msg){
+  const row=document.getElementById("tgFontNote");
+  row.hidden=!msg;row.querySelector(".msg").textContent=msg||"";
+}
+async function loadLocalFonts(){
+  if(!window.queryLocalFonts){
+    fontNote("このブラウザでは端末のフォント一覧を取得できません（パソコンの Chrome / Edge のみ対応）。標準の明朝・ゴシックでの表示になります。");
+    return;
+  }
+  try{
+    const fonts=await window.queryLocalFonts();
+    const set=new Set();
+    fonts.forEach(f=>{if(f.family)set.add(f.family)});
+    localFams=Array.from(set).sort((a,b)=>a.localeCompare(b,"ja"));
+    try{localStorage.setItem(FONT_STORE,JSON.stringify(localFams))}catch(e){}
+    buildFontOptions();
+    fontNote(localFams.length+"件のフォントを読み込みました。一覧の「この端末のフォント」から選べます（他の人の端末にないフォントは標準の書体で表示されます）。");
+  }catch(e){
+    fontNote("フォントの読み込みが許可されませんでした。ブラウザのアドレスバーのアイコンから「フォント」を許可にして、もう一度お試しください。");
+  }
+}
+buildFontOptions();
+document.getElementById("tgFontLoad").addEventListener("click",loadLocalFonts);
+function paintTgAlign(a){
+  document.querySelectorAll("#tgAlign button").forEach(b=>b.classList.toggle("on",b.dataset.align===a));
+}
+function openTgSet(i){
+  tgEditing=i;
+  const c=tgConf[i];
+  document.getElementById("tgSetTitle").textContent=(tgOrder.indexOf(i)+1)+"行目の書式";
+  document.getElementById("tgSize").value=c.size;
+  document.getElementById("tgSizeVal").textContent=c.size;
+  ensureFontOption(c.font);
+  tgFontSel.value=c.font;
+  fontNote(localFams.length?"":"「端末から読込」を押すと、このパソコンのフォントが選択肢に並びます。");
+  document.getElementById("tgColor").value=c.color;
+  document.getElementById("tgStrokeOn").checked=c.strokeOn;
+  document.getElementById("tgStrokeColor").value=c.strokeColor;
+  document.getElementById("tgBgOn").checked=c.bgOn;
+  document.getElementById("tgBgColor").value=c.bgColor;
+  paintTgAlign(c.align);
+  tgModal.hidden=false;
+}
+document.querySelectorAll("button.gear[data-tgset]").forEach(b=>{
+  b.addEventListener("click",()=>openTgSet(Number(b.dataset.tgset)));
+});
+const closeTgSet=()=>{tgModal.hidden=true};
+document.getElementById("tgSetClose").addEventListener("click",closeTgSet);
+document.getElementById("tgSetBack").addEventListener("click",closeTgSet);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeTgSet()});
+function bindTg(id,fn){
+  const el=document.getElementById(id);
+  const handler=()=>{fn(tgConf[tgEditing],el);draw()};
+  el.addEventListener("input",handler);el.addEventListener("change",handler);
+}
+bindTg("tgSize",(c,el)=>{c.size=Number(el.value);document.getElementById("tgSizeVal").textContent=el.value});
+bindTg("tgFont",(c,el)=>{c.font=el.value});
+bindTg("tgColor",(c,el)=>{c.color=el.value});
+bindTg("tgStrokeOn",(c,el)=>{c.strokeOn=el.checked});
+bindTg("tgStrokeColor",(c,el)=>{c.strokeColor=el.value});
+bindTg("tgBgOn",(c,el)=>{c.bgOn=el.checked});
+bindTg("tgBgColor",(c,el)=>{c.bgColor=el.value});
+document.querySelectorAll("#tgAlign button").forEach(b=>{
+  b.addEventListener("click",()=>{tgConf[tgEditing].align=b.dataset.align;paintTgAlign(b.dataset.align);draw()});
+});
+renderTgRows();
 document.getElementById("reset").onclick=()=>{allStates().forEach(st=>{st.x=st.y=0;st.scale=1});draw()};
 // file name stamp: the chosen date, or today when the date field is empty
 function fileStamp(){
