@@ -2,6 +2,7 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>つむぎごはん｜ランチメーカー</title>
 <link rel="icon" type="image/png" sizes="32x32" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAIAAAD8GO2jAAABCGlDQ1BJQ0MgUHJvZmlsZQAAeJxjYGA8wQAELAYMDLl5JUVB7k4KEZFRCuwPGBiBEAwSk4sLGPCCb9cgai/r4leHFXCmpBYnA+kPQKxSBLScgYFRBMgWSYewNUDsJAjbBsQuLykoAbIDQOyikCBnIDsFyNZIR2InIbGTC4pA6nuAbJvcnNJkqL0gF/Ok5oUGA2kOIJZhKGYIYnBncAL5H6IkfxEDg8VXBgbmCQixpJkMDNtbGRgkbiHEVBYwMPC3MDBsO48QQ4RJQWJRIliIBYiZ0tIYGD4tZ2DgjWRgEL7AwMAVDQsIHG5TALvNnSEfCNMZchhSgSKeDHkMyQx6QJYRgwGDIYMZAKVRPz6hsXhXAAADYUlEQVR42u1Wy24cRRStW4/unu4Zz8vOzJhgOxF2MomsyEjmEYyUyQohhIQQyopI2bBjh1jChr9glU9giZAQGxAskBWBFIUIYoyNmMnDmYmnp7uqbl0WjYPjeWCjRAIptWt19zn3njr3VMGxy5+wJ7k4e8LrKcHRCADgsYDux3mEgIiOjLUHB2NwxkrEAQQHvq8WAAD4G5ExBsDQUaotADPojrAHRGw30Tu7ye5Aw16liTapQePcIDXoCACMdaUoeK5R1QZnpsKRUCI6d/EgOiMl+cqJxvlTz8wUo83bXSE4OlqsVT58a22z052bmdIWE40W8e2Xmu+9tgqMnaiVr220leT/0AEAQ6RymDs7N93pxa+eXTjfnOsnGp1bOl5tPju9fa9nkULfQ+ekEF/9eMtqu9ioXv1yPefJ4U2Uw+Iowdvd/qdfrMdJunJytp8aISDVLlCqVikem8rVS/mbf9xTkmvraqXCB1c/R0eFMCBGh5Io289AyVI+6MbJD792AiW5gLu9+KftzoXlkztxcmPrjpIiTvUrzfmFWvnr65thoEZ6ECaEHTGmjQ2UJMaAMePcILUCgIAi38u+0RbLURCnZpzB5WSPB57KTE2MKcH9yM8e3F61vpK9gRZ87ITKyXO0f2SIGA6pQEQT0P8bYQcjLPA4CJwjdI4xptFlQkGWFYxZpIf5Q0RuYoKNJnBEhcArRwE5qhcjTwhHZNCmBhmxSj7QBjmAdZRTMh94jmhcEvORQ2Ctm60UrrSef2Gp8e6Fc+go76s3V0+Xcv77r7/48aVW6EtHhOjeWVsOpERHqbFwSBcRUeDJaxvt725uFSN//Va7r81sZWqpMfPZt9ctoi+FQUwMnp6tvrG69P3P2+3u7mK98kvn/rCj+MigjlPTWl64cnFlsTGdGvSk6Ke6N0hibV5uzt99EDti2uCZufrtbrLWXPjoUuv4dNFY5ENCjZhkAGbRVQth68z81s7uNzd+86QgokDJWJtT9erGnfuxtkrwQIkHg1RwUS2Ev+/0Qt8bPrJGRwUwZtD1E62kiIK/fnNEAmBgrC8F5zzzjwAgxiw6T4qRdpLjUkgJXinkaF8qZFihp4goo+QA2Tsl+DizygP+edgjMYaODrBmfYws6FBz8C8O/ac3u/8BwZ/FybYK5b2eigAAAABJRU5ErkJggg==">
@@ -68,6 +69,28 @@
   .row+.row{margin-top:7px}
   input.narrow{flex:0 0 108px;max-width:108px}
   input[type=date]{flex:0 0 152px;max-width:152px;color:#294b62}
+  .row.check{flex-wrap:wrap;align-items:center}
+  .row.item{align-items:center}
+  button.mini{
+    flex:0 0 26px;width:26px;height:26px;padding:0;border-radius:50%;
+    background:#e8eff2;color:#315b78;font-size:16px;font-weight:700;line-height:1;
+    display:flex;align-items:center;justify-content:center;
+  }
+  button.mini:disabled{opacity:.3;cursor:default}
+  button.add{
+    width:100%;margin-top:8px;background:#eef4f6;color:#315b78;
+    font-size:12px;padding:9px;
+  }
+  button.add[hidden]{display:none}
+  .chk{
+    display:flex;align-items:center;gap:6px;font-size:12px;color:#4a6b80;
+    white-space:nowrap;cursor:pointer;
+  }
+  .chk input[type=checkbox]{width:16px;height:16px;accent-color:#4f7897;cursor:pointer}
+  input[type=color]{
+    flex:0 0 46px;max-width:46px;height:40px;padding:3px;cursor:pointer;
+    border:1px solid #c7d5dc;border-radius:10px;background:#fff;
+  }
   input[type=text]{
     width:100%;padding:10px 11px;border:1px solid #c7d5dc;border-radius:10px;
     background:#fff;font:inherit;font-size:13px;
@@ -93,6 +116,40 @@
     font-size:10px;color:#718995;line-height:1.6;background:#f0f5f6;border-radius:10px;padding:9px;
   }
   .footer{font-size:10px;color:#7b909a;text-align:center;padding:3px}
+  .head{display:flex;align-items:center;gap:8px}
+  button.help{
+    width:22px;height:22px;flex:0 0 22px;padding:0;border:0;border-radius:50%;
+    background:#e3ecef;color:#41647c;font-size:12px;font-weight:700;line-height:1;
+    display:flex;align-items:center;justify-content:center;cursor:pointer;
+  }
+  button.help:hover{background:#cfdde3}
+  .modal[hidden]{display:none}
+  .modal{position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;padding:16px}
+  .modal-back{position:absolute;inset:0;background:rgba(29,86,121,.45)}
+  .modal-card{
+    font-family:"Noto Sans JP","Yu Gothic",Meiryo,sans-serif;
+    position:relative;width:min(560px,100%);max-height:84vh;display:flex;flex-direction:column;
+    background:#fff;border-radius:14px;box-shadow:0 18px 40px rgba(20,50,70,.25);overflow:hidden;
+  }
+  .modal-head{
+    display:flex;align-items:center;justify-content:space-between;gap:8px;
+    padding:13px 16px;border-bottom:1px solid #e2eaee;font-size:14px;color:#294b62;
+  }
+  button.modal-close{
+    background:none;border:0;color:#5f86a1;font-size:20px;line-height:1;
+    padding:0 4px;cursor:pointer;width:auto;
+  }
+  .modal-body{padding:6px 16px 16px;overflow:auto}
+  .modal-lead{font-size:11px;color:#7b909a;line-height:1.7;padding:8px 2px 4px}
+  .qa{border-bottom:1px solid #eef3f5}
+  .qa summary{
+    cursor:pointer;padding:10px 2px;font-size:13px;font-weight:700;color:#315b78;list-style:none;
+    display:flex;align-items:flex-start;gap:6px;
+  }
+  .qa summary::-webkit-details-marker{display:none}
+  .qa summary::before{content:"Q";color:#8fb0c2;font-size:11px;padding-top:2px}
+  .qa .a{font-size:12px;line-height:1.75;color:#5c7787;padding:0 2px 12px 18px}
+  .qa[open] summary{color:#1d5679}
   @media(max-width:850px){
     .app{grid-template-columns:1fr;padding:10px}
     .panel{padding:10px}
@@ -103,7 +160,10 @@
 <body>
 <div class="app">
   <section class="panel">
-    <h1>つむぎごはん｜ランチメーカー</h1>
+    <div class="head">
+      <h1>つむぎごはん｜ランチメーカー</h1>
+      <button class="help" id="helpOpen" type="button" title="使い方" aria-label="使い方">?</button>
+    </div>
     <div class="sub">写真と料理名を入れ替えるだけ。Instagram用 1080 × 1080 px。</div>
     <div class="preview-wrap"><canvas id="canvas" width="1080" height="1080"></canvas></div>
   </section>
@@ -115,17 +175,29 @@
         <input id="headline" type="text" value="本日のランチ">
         <input id="dateText" type="date" aria-label="日付">
       </div>
-      <div class="row"><input id="tagline" type="text" value="" placeholder="写真に重なる一言（1行目／空欄で非表示）"></div>
-      <div class="row"><input id="tagline2" type="text" value="" placeholder="写真に重なる一言（2行目／空欄で非表示）"></div>
+      <div class="row">
+        <input id="tagline" type="text" value="" placeholder="写真に重なる一言（1行目/空欄で非表示）">
+        <input id="taglineColor" type="color" value="#315b78" title="一言の文字色" aria-label="一言の文字色">
+      </div>
+      <div class="row"><input id="tagline2" type="text" value="" placeholder="写真に重なる一言（2行目/空欄で非表示）"></div>
+      <div class="row check">
+        <label class="chk"><input id="tgStrokeOn" type="checkbox"> 縁取り</label>
+        <input id="tgStrokeColor" type="color" value="#ffffff" title="縁取りの色" aria-label="縁取りの色">
+        <label class="chk"><input id="tgBgOn" type="checkbox"> 背景色</label>
+        <input id="tgBgColor" type="color" value="#f8f3e8" title="背景の色" aria-label="背景の色">
+      </div>
     </div>
 
     <div class="group">
       <label class="title">リボンの文字（左）と料理名（右）</label>
-      <div class="row"><input id="mainLabel" class="narrow" type="text" value="メイン"><input id="mainName" type="text" value="やさしい味のおかず"></div>
-      <div class="row"><input id="soupLabel" class="narrow" type="text" value="豚汁"><input id="soupName" type="text" value="豚汁"></div>
-      <div class="row"><input id="sideLabel" class="narrow" type="text" value="副菜"><input id="sideName" type="text" value="副菜"></div>
-      <div class="row"><input id="saladLabel" class="narrow" type="text" value="サラダ"><input id="saladName" type="text" value="サラダ"></div>
-      <div class="row"><input id="dessertLabel" class="narrow" type="text" value="デザート"><input id="dessertName" type="text" value="デザート"></div>
+      <div id="menuRows">
+      <div class="row item" id="row-main"><button class="mini" type="button" data-del="main" title="この項目を削除" aria-label="この項目を削除">&minus;</button><input id="mainLabel" class="narrow" type="text" value="メイン"><input id="mainName" type="text" value="やさしい味のおかず"></div>
+      <div class="row item" id="row-soup"><button class="mini" type="button" data-del="soup" title="この項目を削除" aria-label="この項目を削除">&minus;</button><input id="soupLabel" class="narrow" type="text" value="豚汁"><input id="soupName" type="text" value="豚汁"></div>
+      <div class="row item" id="row-side"><button class="mini" type="button" data-del="side" title="この項目を削除" aria-label="この項目を削除">&minus;</button><input id="sideLabel" class="narrow" type="text" value="副菜"><input id="sideName" type="text" value="副菜"></div>
+      <div class="row item" id="row-salad"><button class="mini" type="button" data-del="salad" title="この項目を削除" aria-label="この項目を削除">&minus;</button><input id="saladLabel" class="narrow" type="text" value="サラダ"><input id="saladName" type="text" value="サラダ"></div>
+      <div class="row item" id="row-dessert"><button class="mini" type="button" data-del="dessert" title="この項目を削除" aria-label="この項目を削除">&minus;</button><input id="dessertLabel" class="narrow" type="text" value="デザート"><input id="dessertName" type="text" value="デザート"></div>
+      </div>
+      <button class="add" id="addItem" type="button">+ 項目を追加</button>
     </div>
 
     <div class="group">
@@ -133,20 +205,36 @@
       <div id="photoControls"></div>
     </div>
 
-    <div class="group">
-      <div class="hint">
-        日付はカレンダーから選べます（初期値は開いた日）。画像上は「9月6日（日）」の形で入り、消せば非表示になります。<br>
-        写真は自動でトリミングされます。プレビュー上の写真をドラッグすると位置調整、ホイール/ピンチで拡大縮小できます。<br>
-        大きい枠は「ランチプレート」の写真です。未設定のときは「メイン」の写真が自動で入ります。<br>
-        料理名は長い場合、自動で2行に折り返します。<br>
-        リボンの文字も自由に変えられます（長いとリボン幅が少し伸びます）。空欄にするとリボン自体を非表示にできます。
-      </div>
-    </div>
-
     <button class="export" id="export">PNG画像を書き出す</button>
-    <button class="secondary" id="reset">写真の位置・拡大率をリセット</button>
+    <button class="secondary" id="reset">写真と文字の位置をリセット</button>
     <div class="footer">※写真はブラウザ内だけで処理します。</div>
   </section>
+</div>
+
+<div class="modal" id="helpModal" hidden>
+  <div class="modal-back" id="helpBack"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="helpTitle">
+    <div class="modal-head">
+      <strong id="helpTitle">使い方 Q&amp;A</strong>
+      <button class="modal-close" id="helpClose" type="button" aria-label="閉じる">&times;</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-lead">やりたいことを選んでください。項目を押すと手順が開きます。</div>
+      <details class="qa"><summary>日付を入れたい・消したい</summary><div class="a">「タイトル」の右にある日付欄を押すとカレンダーが開きます。選んだ日は画像上で「9月6日（日）」の形で入ります。初期値は開いた日です。日付を出したくないときは、日付欄を空にすれば非表示になります。</div></details>
+      <details class="qa"><summary>写真の上に一言メッセージを入れたい</summary><div class="a">タイトルの下にある「写真に重なる一言」の欄に入力してください。2行まで使え、空欄にすると非表示になります。</div></details>
+      <details class="qa"><summary>一言の位置を動かしたい</summary><div class="a">プレビュー上の文字をそのままドラッグしてください。2行ある場合���まとめて移動します。写真の枠からはみ出す手前で自動的に止まるので、切れる心配はありません。</div></details>
+      <details class="qa"><summary>写真と重なって文字が読みにくい</summary><div class="a">3つの手段があります。(1) 一言の欄の右にある色見本を押すと、カラーピッカーで文字色を変えられます。(2) 「縁取り」をチェックすると文字の外側に縁が付きます（色も選べます）。(3) 「背景色」をチェックすると、文字の後ろに角丸の帯が入ります。</div></details>
+      <details class="qa"><summary>料理の数を減らしたい（1個から5個）</summary><div class="a">各行の左にある丸い「−」ボタンを押すとその項目が削除され、残った円が自動で中央揃えになります（写真の選択欄も連動）。4個以下のときは下に「+ 項目を追加」ボタンが出て、最大5個まで戻せます。削除した項目の文字と写真はクリアされます。</div></details>
+      <details class="qa"><summary>円の中の文字やリボンの文字を変えたい</summary><div class="a">「リボンの文字（左）と料理名（右）」の左側の細い欄がリボンと円の中の文字、右側がリボンの下に出る料理名です。リボンの文字が長いときはリボン幅が少し伸び、料理名が長いときは自動で2行に折り返します。</div></details>
+      <details class="qa"><summary>写真を入れたい・差し替えたい</summary><div class="a">「写真」の一覧で、入れたい項目の「選択」を押して画像を選んでください。選んだ写真は一覧の左にサムネイルとして表示されます。もう一度「選択」すれば差し替えです。</div></details>
+      <details class="qa"><summary>どの写真がどの料理かわからなくなる</summary><div class="a">写真一覧の見出しは、入力した「リボンの文字」と同じ名前になります。その下に「料理名：○○」も併記されるので、上の入力欄やプレビューの円と見比べて確認できます。</div></details>
+      <details class="qa"><summary>写真の写っている位置を調整したい</summary><div class="a">写真は枠に合わせて自動でトリミングされます。プレビュー上の写真をドラッグすると位置を、マウスのホイールやスマホのピンチで拡大縮小を調整できます。</div></details>
+      <details class="qa"><summary>大きい枠に別の写真を使いたい</summary><div class="a">写真一覧の一番上「ランチプレート」が大きい枠専用の欄です。ここを未設定にしておくと、先頭の項目（既定ではメイン、リボンの文字を変えた場合はその名前）の写真が自動で入ります。</div></details>
+      <details class="qa"><summary>位置をいじっていたら崩れてしまった</summary><div class="a">下の「写真と文字の位置をリセット」を押すと、すべての写真の位置・拡大率と一言の位置が初期状態に戻ります（写真や文字の内容は消えません）。</div></details>
+      <details class="qa"><summary>完成した画像を保存して投稿したい</summary><div class="a">下の「PNG画像を書き出す」を押すと、1080 x 1080 px（Instagram向けの正方形）の画像がダウンロードされます。ファイル名は tsumugi_gohan_20260906.png のように、日付欄で選んだ日付（YYYYMMDD）が入ります。日付欄を空にしているときは書き出した日の日付になります。</div></details>
+      <details class="qa"><summary>写真がどこかに送られないか心配</summary><div class="a">すべての処理はこのファイルを開いたブラウザの中だけで完結します。写真がインターネットに送信されることはありません。オフラインでも使えます。</div></details>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -166,6 +254,8 @@ const photoDefs=[
   {id:"dessert",label:"デザート",input:"dessertName",labelInput:"dessertLabel",shape:"circle"}
 ];
 const val=id=>{const el=document.getElementById(id);return el?el.value:""};
+const on=id=>{const el=document.getElementById(id);return !!(el&&el.checked)};
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const WEEKDAYS=["日","月","火","水","木","金","土"];
 // "2026-09-06" -> "9月6日（日）"空欄なら日付を描かない）
 function dateLabel(){
@@ -182,9 +272,23 @@ const allDefs=[plateDef,...photoDefs];
 allDefs.forEach(p=>state[p.id]={x:0,y:0,scale:1,img:null,drag:false,sx:0,sy:0,ox:0,oy:0});
 // offsets used when the main-dish photo stands in for a missing plate photo
 state.mainBig={x:0,y:0,scale:1,img:null,drag:false,sx:0,sy:0,ox:0,oy:0};
+// drag offset for the message that sits on the photo
+state.tagline={x:0,y:0,scale:1,img:null,drag:false,sx:0,sy:0,ox:0,oy:0};
 function bigState(){return state.plate.img?state.plate:(state.main.img?state.mainBig:null)}
 function bigImage(){return state.plate.img||state.main.img||null}
-function allStates(){return [state.plate,state.mainBig,...photoDefs.map(p=>state[p.id])]}
+function allStates(){return [state.plate,state.mainBig,state.tagline,...photoDefs.map(p=>state[p.id])]}
+// only items with a ribbon label or a dish name are shown (1-5 items)
+// ids of the rows currently shown, in display order (1 to 5 items)
+let order=photoDefs.map(p=>p.id), pool=[];
+function activeDefs(){
+  return order.map(id=>photoDefs.find(p=>p.id===id)).filter(Boolean);
+}
+// evenly spaced and centered, whatever the count is
+function menuLayout(){
+  const defs=activeDefs(), n=defs.length, gap=203;
+  const start=540-(n-1)*gap/2;
+  return defs.map((p,i)=>({def:p,x:start+i*gap}));
+}
 
 function roundedRect(c,x,y,w,h,r){
   c.beginPath();c.roundRect(x,y,w,h,r);c.closePath();
@@ -225,11 +329,49 @@ function drawLogo(cx,cy,size){
   ctx.strokeStyle="rgba(49,91,120,.25)";ctx.lineWidth=2;ctx.stroke();
   ctx.restore();
 }
+// message on the photo: size, line height, and padding from the photo edge
+const TG_SIZE=22, TG_LINE=34, TG_PAD=34;
+const PHOTO_L=80, PHOTO_R=1000, PHOTO_T=190, PHOTO_B=690;
+// base spot + drag offset, always kept inside the photo frame
+function taglineBox(lines){
+  ctx.save();
+  ctx.font=`600 ${TG_SIZE}px "Noto Serif JP","Yu Mincho",serif`;
+  let maxW=0;lines.forEach(t=>{maxW=Math.max(maxW,ctx.measureText(t).width)});
+  ctx.restore();
+  const st=state.tagline;
+  const height=(lines.length-1)*TG_LINE;
+  const maxRight=PHOTO_R-TG_PAD;
+  const minRight=Math.min(PHOTO_L+TG_PAD+maxW,maxRight);
+  let right=Math.min(maxRight,Math.max(minRight,(PHOTO_R-TG_PAD)+st.x));
+  st.x=right-(PHOTO_R-TG_PAD);
+  const minBase=PHOTO_T+TG_PAD+TG_SIZE;
+  const maxBase=Math.max(minBase,PHOTO_B-TG_PAD-height);
+  let baseline=Math.min(maxBase,Math.max(minBase,335+st.y));
+  st.y=baseline-335;
+  return {right,baseline,maxW,height};
+}
+function hitTagline(x,y){
+  const lines=[val("tagline"),val("tagline2")].filter(t=>t&&t.trim());
+  if(!lines.length)return false;
+  const b=taglineBox(lines);
+  return x>b.right-b.maxW-16 && x<b.right+16 && y>b.baseline-TG_SIZE-16 && y<b.baseline+b.height+16;
+}
+// "#rrggbb" -> true when the color is pale
+function isLight(hex){
+  const c=String(hex).replace("#","");
+  if(c.length!==6)return false;
+  const r=parseInt(c.slice(0,2),16),g=parseInt(c.slice(2,4),16),b=parseInt(c.slice(4,6),16);
+  return (0.299*r+0.587*g+0.114*b)>165;
+}
 function text(t,x,y,size,opts={}){
   ctx.save();
   ctx.font=`${opts.weight||400} ${size}px ${opts.font||'"Noto Serif JP","Yu Mincho",serif'}`;
   ctx.fillStyle=opts.color||"#315b78";ctx.textAlign=opts.align||"left";ctx.textBaseline=opts.base||"alphabetic";
   if(opts.rotate)ctx.rotate(opts.rotate);
+  if(opts.stroke){
+    ctx.strokeStyle=opts.stroke;ctx.lineWidth=opts.strokeWidth||4;
+    ctx.lineJoin="round";ctx.miterLimit=2;ctx.strokeText(t,x,y);
+  }
   ctx.fillText(t,x,y);
   ctx.restore();
 }
@@ -240,7 +382,7 @@ function fitText(t,maxWidth,size,weight=700){
 }
 function splitTwo(t,maxWidth){
   const mid=Math.floor(t.length/2);
-  const seps=[" ","\u3000","・","、","／","/"];
+  const seps=[" ","\u3000","・","、","/","/"];
   let bestSep=null;
   for(let i=1;i<t.length-1;i++){
     if(seps.includes(t[i])){
@@ -339,14 +481,32 @@ function draw(){
   ctx.fillStyle="#f8f3e8";ctx.beginPath();ctx.moveTo(28,705);ctx.quadraticCurveTo(270,690,540,710);ctx.quadraticCurveTo(810,730,1052,704);ctx.lineTo(1052,760);ctx.lineTo(28,760);ctx.closePath();ctx.fill();
   // handwritten message (up to two lines)
   const tg=[val("tagline"),val("tagline2")].filter(t=>t&&t.trim());
-  tg.forEach((t,i)=>text(t,1010,335+i*34,22,{align:"right",weight:600}));
+  const tgColor=val("taglineColor")||"#315b78";
+  if(tg.length){
+    const tb=taglineBox(tg);
+    const strokeOn=on("tgStrokeOn"), bgOn=on("tgBgOn");
+    if(bgOn){
+      // rounded plate behind the message
+      const px=18, py=14;
+      ctx.save();ctx.fillStyle=val("tgBgColor")||"#f8f3e8";
+      roundedRect(ctx,tb.right-tb.maxW-px,tb.baseline-TG_SIZE-py+4,tb.maxW+px*2,tb.height+TG_SIZE+py*2,14);
+      ctx.fill();ctx.restore();
+    }
+    ctx.save();
+    // a pale color on a bare photo needs a soft shadow; not needed with an outline or a backing plate
+    if(isLight(tgColor)&&!strokeOn&&!bgOn){ctx.shadowColor="rgba(0,0,0,.38)";ctx.shadowBlur=10;ctx.shadowOffsetY=1;}
+    const tgOpts={align:"right",weight:600,color:tgColor};
+    if(strokeOn){tgOpts.stroke=val("tgStrokeColor")||"#ffffff";tgOpts.strokeWidth=4;}
+    tg.forEach((t,i)=>text(t,tb.right,tb.baseline+i*TG_LINE,TG_SIZE,tgOpts));
+    ctx.restore();
+  }
   // menu strip
   text("MENU",540,762,25,{align:"center",weight:600,font:'"Arial",sans-serif'});
   ctx.strokeStyle="#9bb2c0";ctx.lineWidth=2;
   ctx.beginPath();ctx.moveTo(280,754);ctx.lineTo(470,754);ctx.moveTo(610,754);ctx.lineTo(800,754);ctx.stroke();
-  const xs=[135,338,540,742,945], cy=846, d=132;
-  photoDefs.forEach((p,i)=>{
-    const st=state[p.id], x=xs[i];
+  const cy=846, d=132;
+  menuLayout().forEach(({def:p,x})=>{
+    const st=state[p.id];
     const lb=val(p.labelInput);
     if(st.img)clipImage(st.img,x,cy,d,d,st.scale,st.x,st.y,"circle");
     else placeholder(x,cy,d,d,lb||p.label,"circle");
@@ -359,10 +519,16 @@ function draw(){
 }
 function rebuildControls(){
   const box=document.getElementById("photoControls");box.innerHTML="";
-  allDefs.forEach(p=>{
+  [plateDef,...activeDefs()].forEach(p=>{
     const row=document.createElement("div");row.className="photo-row";
-    const note=p.id==="plate"?"メイン画像（大きい枠）／未設定ならメインの写真を表示":"クリックして写真を選択";
-    row.innerHTML=`<img class="thumb" id="thumb-${p.id}" alt=""><div><div class="photo-name">${p.label}</div><div class="photo-note">${note}</div></div><button class="secondary">選択</button>`;
+    // name each row after its ribbon text so uploads never land on the wrong item
+    const firstLabel=val(photoDefs[0].labelInput).trim()||photoDefs[0].label;
+    const dish=p.id==="plate"?"":val(p.input).trim();
+    const note=p.id==="plate"
+      ?`大きい枠の写真/未設定なら「${esc(firstLabel)}」の写真を表示`
+      :(dish?`料理名：${esc(dish)}`:"クリックして写真を選択");
+    row.innerHTML=`<img class="thumb" id="thumb-${p.id}" alt=""><div><div class="photo-name">${esc(p.id==="plate"?p.label:(val(p.labelInput).trim()||p.label))}</div><div class="photo-note">${note}</div></div><button class="secondary">選択</button>`;
+    const th=row.querySelector(".thumb");if(state[p.id].thumb)th.src=state[p.id].thumb;
     const input=document.createElement("input");input.type="file";input.accept="image/*";input.hidden=true;
     row.querySelector("button").onclick=()=>input.click();
     input.onchange=()=>{if(input.files[0])loadPhoto(p.id,input.files[0]);};
@@ -372,7 +538,9 @@ function rebuildControls(){
 function loadPhoto(id,file){
   const url=URL.createObjectURL(file),img=new Image();
   img.onload=()=>{state[id].img=img;state[id].x=state[id].y=0;state[id].scale=1;
-    document.getElementById("thumb-"+id).src=url;draw();};
+    state[id].thumb=url;
+    const t=document.getElementById("thumb-"+id);if(t)t.src=url;
+    draw();};
   img.src=url;
 }
 function pointerPos(e){
@@ -380,13 +548,13 @@ function pointerPos(e){
   return {x:(e.clientX-r.left)*W/r.width,y:(e.clientY-r.top)*H/r.height};
 }
 function inBig(x,y){return x>80&&x<1000&&y>190&&y<690}
-function hitPhoto(p,x,y){
-  const xs=[135,338,540,742,945];const dx=x-xs[photoDefs.indexOf(p)],dy=y-846;
-  return dx*dx+dy*dy<(66*66);
-}
 function pickState(x,y){
+  if(hitTagline(x,y))return state.tagline;
   if(inBig(x,y)){const bs=bigState();if(bs)return bs;}
-  for(const p of photoDefs)if(hitPhoto(p,x,y))return state[p.id];
+  for(const it of menuLayout()){
+    const dx=x-it.x, dy=y-846;
+    if(dx*dx+dy*dy<(66*66))return state[it.def.id];
+  }
   return null;
 }
 canvas.addEventListener("pointerdown",e=>{
@@ -402,14 +570,62 @@ canvas.addEventListener("wheel",e=>{
   e.preventDefault();const q=pointerPos(e);const st=pickState(q.x,q.y);
   if(st){st.scale=Math.max(.5,Math.min(3,st.scale*(e.deltaY<0?1.06:.94)));draw();}
 },{passive:false});
-["headline","dateText","tagline","tagline2",
- "mainLabel","soupLabel","sideLabel","saladLabel","dessertLabel",
- "mainName","soupName","sideName","saladName","dessertName"]
+["headline","dateText","tagline","tagline2","taglineColor"]
   .forEach(id=>document.getElementById(id).addEventListener("input",draw));
+["taglineColor","tgStrokeOn","tgStrokeColor","tgBgOn","tgBgColor"]
+  .forEach(id=>{const el=document.getElementById(id);
+    el.addEventListener("input",draw);el.addEventListener("change",draw);});
+["mainLabel","soupLabel","sideLabel","saladLabel","dessertLabel",
+ "mainName","soupName","sideName","saladName","dessertName"]
+  .forEach(id=>document.getElementById(id).addEventListener("input",()=>{rebuildControls();draw()}));
 document.getElementById("dateText").addEventListener("change",draw);
+
+// ---- add / remove menu items (min 1, max 5) ----
+function renderRows(){
+  const box=document.getElementById("menuRows");
+  order.forEach(id=>box.appendChild(document.getElementById("row-"+id)));
+  photoDefs.forEach(p=>{
+    const row=document.getElementById("row-"+p.id);
+    row.style.display=order.includes(p.id)?"":"none";
+    row.querySelector("button.mini").disabled=order.length<=1;
+  });
+  document.getElementById("addItem").hidden=order.length>=5;
+}
+function clearSlot(id){
+  const def=photoDefs.find(p=>p.id===id), st=state[id];
+  st.img=null;st.thumb=null;st.x=0;st.y=0;st.scale=1;
+  document.getElementById(def.labelInput).value="";
+  document.getElementById(def.input).value="";
+}
+photoDefs.forEach(p=>{
+  document.querySelector('button.mini[data-del="'+p.id+'"]').addEventListener("click",()=>{
+    if(order.length<=1)return;
+    order=order.filter(x=>x!==p.id);
+    pool.push(p.id);
+    clearSlot(p.id);
+    renderRows();rebuildControls();draw();
+  });
+});
+document.getElementById("addItem").addEventListener("click",()=>{
+  if(order.length>=5)return;
+  const id=pool.shift();
+  if(!id)return;
+  clearSlot(id);
+  order.push(id);
+  renderRows();rebuildControls();draw();
+  document.getElementById(photoDefs.find(p=>p.id===id).labelInput).focus();
+});
+renderRows();
 document.getElementById("reset").onclick=()=>{allStates().forEach(st=>{st.x=st.y=0;st.scale=1});draw()};
+// file name stamp: the chosen date, or today when the date field is empty
+function fileStamp(){
+  const v=val("dateText");
+  const d=v?new Date(v+"T00:00:00"):new Date();
+  const p=n=>String(n).padStart(2,"0");
+  return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}`;
+}
 document.getElementById("export").onclick=()=>{
-  const a=document.createElement("a");a.download="tsumugi-gohan-lunch.png";a.href=canvas.toDataURL("image/png");a.click();
+  const a=document.createElement("a");a.download=`tsumugi_gohan_${fileStamp()}.png`;a.href=canvas.toDataURL("image/png");a.click();
 };
 (function(){
   const t=new Date();
@@ -417,6 +633,13 @@ document.getElementById("export").onclick=()=>{
   document.getElementById("dateText").value=`${t.getFullYear()}-${p(t.getMonth()+1)}-${p(t.getDate())}`;
 })();
 rebuildControls();draw();
+// help modal
+const helpModal=document.getElementById("helpModal");
+const setHelp=open=>{helpModal.hidden=!open};
+document.getElementById("helpOpen").addEventListener("click",()=>setHelp(true));
+document.getElementById("helpClose").addEventListener("click",()=>setHelp(false));
+document.getElementById("helpBack").addEventListener("click",()=>setHelp(false));
+document.addEventListener("keydown",e=>{if(e.key==="Escape")setHelp(false)});
 </script>
 </body>
 </html>
