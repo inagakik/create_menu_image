@@ -210,7 +210,7 @@
     <canvas id="canvas" width="1181" height="1713"></canvas>
   </div>
   <div class="panel">
-    <div class="sub">紐14.5cm × 横10cm（300dpi / 1181 × 1713 px）のメニュー表をつくります。</div>
+    <div class="sub">縦14.5cm × 横10cm（300dpi / 1181 × 1713 px）のメニュー表をつくります。</div>
     <div class="controls" id="ctl">
 
       <div class="group">
@@ -326,11 +326,11 @@
   </div>
 </div>
 
+<script src="common.js"></script>
 <script>
 const STORE_KEY="menu";
 const W=1181,H=1713;
 const canvas=document.getElementById("canvas"),ctx=canvas.getContext("2d");
-const LOGO_SRC="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCAFAAUADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDxmiiivvj8xCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAo9+x6UqFfMHmZ25GcdxSvI8h+Y8DoOw9hQA2iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAOe1HbNAJHKsVPqDg0+RlchgMMfvehOetADKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoooo8hXCiiim1YqzCijB9KKS10CwUUUUCCiiigAo60Dk4r6A1T4HeGtO/Y9g+JrahejWjZw6g26QeQVkdVEe3GRhXHOeorGtXhR5efq7HTQwtSum4dNT5/ooyD0II9Qc0hIUZYgAdycVsc1haKO1FABRRRQAVfstD1nUrC6vtO0q9u7a0Aa4mggaRIR/tEDitLwd4J8SePfES6J4W01r272+Y+WCJEmcbmY8AZIr7h+BHws1v4dfD3UvD/AIpuNLuxfzmcxWgZgqtGEZHZgN3TsPXk1w4zHRwy01fY9LAZfPFS10j3Pz97A+tFfRv7QnwX+Hfwz8FWN/4fv76PU7m78tLO5uFkEsWCWIG0EBflGfcCuU+CfwTs/i1p2uz3HiKTTZrApHFFHEshdmUkM4P8HGOOetXHHU5UvbPYznl9WNf2CtzHj2DjpSV9LeGPh98JtI+E3irw78STZ6b4z0yWcSy3E+yfAXdBJbgkeYjDBwAc5INfNCklFLfeIBP1rShiFWvZbGWJw0qFuZ7i0UUVucwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFdL4B8F3/wAQfH9l4U026t7W4ut5864zsRVUseByTgVzVT2d9e6dfxX2nXc9pdQndHPA5R0PqGHINTOMnFqOjNKbipJzV0fX+lfsmeANAslu/G3i28uyBlyJEsoAR15OWI/Grn2T9kPwifInl8M3Ui/KxlaXUDn3xvAP5V8c6lq2q6zcNPq+p3uoSscl7ud5Sf8Avomqfbrj6V5n9n1J/wAWo/kep/adGn/ApL56n2oPEf7H98Ra/ZfCaFztBOkyRY/4H5Y2/XIrmPir+zd4ZuvBEvjb4Tz744oTdGwin8+C4iAyWhckkMBk4JIPTg18pfU/nX2n+x/calN8I9at7t3k0+HUilsr8hMxq0gGe2SDj1JrDEYeWDiq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ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAOgz2FA5OAcn0rf8Earouh/EPSNX8RaWdU0y1uBJcWgAbzVweMHg8kHB4OK+uYfiP+zF8Q7RLLW9P0m0cgKqapp4tmX0AlQYH4NXHicVKi0uRteR6GEwccRF3mk+zPiejBIJA6V9G/Hb4L/D3wp8P08b+CNcKwzXEcSWQuBcRTByQTG/J468kjjtVX9mrwh8LvG9rruheLtPivNdfD2omZlKwbcFoiD98Mee+Me9T9ej7J1UnYP7Pmqyoyauzw1NA1yTw6+vx6PfvpUb+W98sDGFW9C+MCs6vsubxP4d+B/w+1H4T/EK1k1OweC4fSpraLet/bSM37uX+5KrHBJ4wVIOeK+MwPrWmFxLr8zasuhOMwscPaKld9fIWjGTgUV6B8F/AEHxJ+Ltl4dvZJY7ARSXV28Rw3loBwD2JZlH41tVqKnFzeyOWlSlVmoRWrPP6K9L+O3gbw/8Pfi7L4e8NTzvZi0inaOeTe0Ltuyu7qRgKef71cHo2iax4i1ZNL0LS7rUb6QEpb2yF3YDqcDtRSqxnBVFsVUoShN0uqM89K7jUPhP410r4UWvxFvNPhTRLnYVYTAyKrnCOydlJIA5J5GcVs6f+zt8YtRUFPBk9vkf8vdxFCR+bV9ZXvw28R65+yPa/Dq6ezs9bGnw27GWQtEjxuCMsoORhRyK4cXmEKbiqclvqelg8snVU/aRastPU/P2ivXviR+z14p+Gvgj/hJ9R1jSr+2WdIJo7XeGjLnCn5h8wzx7V5DXdSrQqrmg7o82tQnRly1FZhRRRWhiGR61NJZ3cVnHdzWlxHbykiOZ4mVHI6hWIwfwrt/g98PpfiT8VrDQWVvsEf8ApN/IP4IFIyM+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";
 const IMG={};
 const dc=(o)=>Object.assign({size:40,font:"gothic",color:"#315b78",strokeOn:false,strokeColor:"#ffffff",weight:700},o);
 let titleConf=dc({size:96,font:"mincho",color:"#315b78"});
@@ -344,384 +344,6 @@ let items=[
   {name:"日替わりランチ",price:"1000",mode:"list",list:["主菜・小鉢二品","ごはん・お味噌汁つき"],dir:"v",text:""},
   {name:"つむぎ定食",price:"1200",mode:"text",list:[""],dir:"v",text:"その日のおすすめを一枚のお皿に。\n食後のお飲み物つき。"}
 ];
-
-/* ===== つむぎごはん 共通スクリプト（info.html / menu.html） ===== */
-const val=id=>{const el=document.getElementById(id);return el?el.value:""};
-const num=id=>Number(val(id))||0;
-const chk=id=>{const el=document.getElementById(id);return !!(el&&el.checked)};
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-
-function roundedRect(c,x,y,w,h,r){
-  c.beginPath();c.moveTo(x+r,y);c.arcTo(x+w,y,x+w,y+h,r);c.arcTo(x+w,y+h,x,y+h,r);
-  c.arcTo(x,y+h,x,y,r);c.arcTo(x,y,x+w,y,r);c.closePath();
-}
-function fileStamp(){
-  const d=new Date(),p=n=>String(n).padStart(2,"0");
-  return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}`;
-}
-function hexA(hex,a){
-  const h=String(hex||"#ffffff").replace("#","");
-  const n=h.length===3?h.split("").map(x=>x+x).join(""):h;
-  const r=parseInt(n.slice(0,2),16),g=parseInt(n.slice(2,4),16),b=parseInt(n.slice(4,6),16);
-  return `rgba(${r},${g},${b},${a})`;
-}
-
-/* ---- フォント ---- */
-const FONTS=[
-  {id:"mincho",label:"明朝（標準）",css:'"Hiragino Mincho ProN","Yu Mincho","YuMincho",serif'},
-  {id:"gothic",label:"ゴシック（標準）",css:'"Noto Sans JP","Yu Gothic",Meiryo,sans-serif'}
-];
-const FONT_STORE="tsumugiLocalFonts";
-let localFams=[];
-try{localFams=JSON.parse(localStorage.getItem(FONT_STORE)||"[]")}catch(e){localFams=[]}
-function fontCss(id){
-  if(id&&id.slice(0,6)==="local:")return '"'+id.slice(6)+'", "Noto Sans JP", sans-serif';
-  const f=FONTS.find(x=>x.id===id);
-  return f?f.css:FONTS[0].css;
-}
-function fontSpec(conf,weight){
-  return (weight||conf.weight||700)+" "+conf.size+"px "+fontCss(conf.font);
-}
-function buildFontOptions(){
-  document.querySelectorAll("select.fontsel").forEach(sel=>{
-    const keep=sel.value;
-    sel.innerHTML="";
-    const g1=document.createElement("optgroup");g1.label="標準";
-    FONTS.forEach(f=>{const o=document.createElement("option");o.value=f.id;o.textContent=f.label;g1.appendChild(o)});
-    sel.appendChild(g1);
-    if(localFams.length){
-      const g2=document.createElement("optgroup");g2.label="この端末のフォント";
-      localFams.forEach(fam=>{const o=document.createElement("option");o.value="local:"+fam;o.textContent=fam;g2.appendChild(o)});
-      sel.appendChild(g2);
-    }
-    if(keep)sel.value=keep;
-  });
-}
-function ensureFontOption(v){
-  if(!v||v.slice(0,6)!=="local:")return;
-  const fam=v.slice(6);
-  if(localFams.indexOf(fam)<0){localFams.push(fam);buildFontOptions();}
-}
-function fontNote(msg){
-  const row=document.getElementById("fontNote");
-  if(!row)return;
-  row.hidden=!msg;row.querySelector(".msg").textContent=msg||"";
-}
-async function loadLocalFonts(){
-  if(!window.queryLocalFonts){
-    fontNote("このブラウザでは端末のフォント一覧を取得できません（パソコンの Chrome / Edge のみ対応）。標準の明朝・ゴシックでの表示になります。");
-    return;
-  }
-  try{
-    const fonts=await window.queryLocalFonts();
-    const set=new Set();
-    fonts.forEach(f=>{if(f.family)set.add(f.family)});
-    localFams=Array.from(set).sort((a,b)=>a.localeCompare(b,"ja"));
-    try{localStorage.setItem(FONT_STORE,JSON.stringify(localFams))}catch(e){}
-    buildFontOptions();
-    fontNote(localFams.length+"件のフォントを読み込みました。「この端末のフォント」から選べます（他の人の端末に無いフォントは標準の書体で表示されます）。");
-  }catch(e){
-    fontNote("フォントの読み込みが許可されませんでした。アドレスバーのアイコンから「フォント」を許可にして、もう一度お試しください。");
-  }
-}
-
-/* ---- 文字描画 ---- */
-function drawLine(c,t,x,y,conf,align){
-  if(!t)return;
-  c.save();
-  c.font=fontSpec(conf);
-  c.textAlign=align||"left";
-  c.textBaseline="alphabetic";
-  if(conf.strokeOn){
-    c.lineJoin="round";c.lineCap="round";
-    c.lineWidth=Math.max(2,conf.size*0.16);
-    c.strokeStyle=conf.strokeColor;
-    c.strokeText(t,x,y);
-  }
-  c.fillStyle=conf.color;
-  c.fillText(t,x,y);
-  c.restore();
-}
-function wrapByWidth(c,text,conf,maxW){
-  c.save();c.font=fontSpec(conf);
-  const out=[];
-  String(text).split(/\r?\n/).forEach(par=>{
-    if(par===""){out.push("");return}
-    let line="";
-    for(const ch of par){
-      if(c.measureText(line+ch).width>maxW&&line){out.push(line);line=ch}
-      else line+=ch;
-    }
-    out.push(line);
-  });
-  c.restore();
-  return out;
-}
-function measureW(c,t,conf){
-  c.save();c.font=fontSpec(conf);const w=c.measureText(t).width;c.restore();return w;
-}
-
-/* ---- 書式ダイアログ（共通） ---- */
-let fmtTarget=null,fmtTitle="";
-const fmtModal=document.getElementById("fmtModal");
-function paintFmt(){
-  if(!fmtTarget)return;
-  const c=fmtTarget;
-  document.getElementById("fmtTitle").textContent=fmtTitle;
-  document.getElementById("fmtSize").value=c.size;
-  document.getElementById("fmtSizeVal").textContent=c.size;
-  ensureFontOption(c.font);
-  document.getElementById("fmtFont").value=c.font;
-  document.getElementById("fmtColor").value=c.color;
-  document.getElementById("fmtStrokeOn").checked=!!c.strokeOn;
-  document.getElementById("fmtStrokeColor").value=c.strokeColor||"#ffffff";
-  const alignRow=document.getElementById("fmtAlignRow");
-  if(alignRow){
-    alignRow.hidden=!c.align;
-    document.querySelectorAll("#fmtAlign button").forEach(b=>b.classList.toggle("on",b.dataset.align===c.align));
-  }
-  fontNote(localFams.length?"":"「端末から読込」を押すと、このパソコンのフォントが選択肢に並びます。");
-}
-function openFmt(conf,title,sizeMin,sizeMax){
-  fmtTarget=conf;fmtTitle=title||"書式";
-  const s=document.getElementById("fmtSize");
-  s.min=sizeMin||16;s.max=sizeMax||140;
-  paintFmt();
-  fmtModal.hidden=false;
-}
-function closeFmt(){fmtModal.hidden=true;fmtTarget=null}
-document.getElementById("fmtClose").addEventListener("click",closeFmt);
-document.getElementById("fmtBack").addEventListener("click",closeFmt);
-function bindFmt(id,fn){
-  const el=document.getElementById(id);
-  const h=()=>{if(!fmtTarget)return;fn(fmtTarget,el);draw();scheduleSave()};
-  el.addEventListener("input",h);el.addEventListener("change",h);
-}
-bindFmt("fmtSize",(c,el)=>{c.size=Number(el.value);document.getElementById("fmtSizeVal").textContent=el.value});
-bindFmt("fmtFont",(c,el)=>{c.font=el.value});
-bindFmt("fmtColor",(c,el)=>{c.color=el.value});
-bindFmt("fmtStrokeOn",(c,el)=>{c.strokeOn=el.checked});
-bindFmt("fmtStrokeColor",(c,el)=>{c.strokeColor=el.value});
-document.querySelectorAll("#fmtAlign button").forEach(b=>{
-  b.addEventListener("click",()=>{
-    if(!fmtTarget||!fmtTarget.align)return;
-    fmtTarget.align=b.dataset.align;paintFmt();draw();scheduleSave();
-  });
-});
-document.getElementById("fontLoad").addEventListener("click",loadLocalFonts);
-buildFontOptions();
-
-/* ---- 画像の位置・大きさダイアログ（共通） ---- */
-const adjModal=document.getElementById("adjModal");
-const adjCv=document.getElementById("adjCanvas"),adjCtx=adjCv.getContext("2d");
-let adjT=null;
-function drawAdjust(){
-  if(!adjT)return;
-  const f=adjT.f,cw=Math.round(adjT.cw*f),ch=Math.round(adjT.ch*f);
-  if(adjCv.width!==cw||adjCv.height!==ch){adjCv.width=cw;adjCv.height=ch}
-  const st=adjT.st,img=st.img;
-  adjCtx.clearRect(0,0,cw,ch);
-  adjCtx.fillStyle="#dce8ed";adjCtx.fillRect(0,0,cw,ch);
-  adjCtx.save();
-  if(adjT.shape==="circle"){adjCtx.beginPath();adjCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2,0,Math.PI*2);adjCtx.clip()}
-  else{roundedRect(adjCtx,0,0,cw,ch,18*f);adjCtx.clip()}
-  const iw=img.width,ih=img.height;
-  const sc=Math.max(cw/iw,ch/ih)*st.scale;
-  adjCtx.drawImage(img,cw/2-iw*sc/2+st.x*f,ch/2-ih*sc/2+st.y*f,iw*sc,ih*sc);
-  adjCtx.restore();
-  const pct=Math.round(st.scale*100);
-  document.getElementById("adjZoom").value=pct;
-  document.getElementById("adjZoomVal").textContent=pct+"%";
-}
-function openAdjust(t){
-  if(!t||!t.st||!t.st.img)return;
-  adjT=t;
-  document.getElementById("adjTitle").textContent=t.title||"位置と大きさ";
-  adjModal.hidden=false;
-  drawAdjust();
-}
-function closeAdjust(){adjModal.hidden=true;adjT=null;adjPts.clear();adjG=null;draw();scheduleSave()}
-document.getElementById("adjClose").addEventListener("click",closeAdjust);
-document.getElementById("adjBack").addEventListener("click",closeAdjust);
-document.getElementById("adjDone").addEventListener("click",closeAdjust);
-document.getElementById("adjReset").addEventListener("click",()=>{
-  if(!adjT)return;adjT.st.x=0;adjT.st.y=0;adjT.st.scale=1;drawAdjust();draw();
-});
-document.getElementById("adjZoom").addEventListener("input",e=>{
-  if(!adjT)return;adjT.st.scale=Number(e.target.value)/100;drawAdjust();draw();
-});
-const adjPts=new Map();
-let adjG=null;
-const adjAvg=()=>{
-  let x=0,y=0,n=0;adjPts.forEach(p=>{x+=p.x;y+=p.y;n++});
-  return {x:x/n,y:y/n};
-};
-const adjDist=()=>{
-  const a=Array.from(adjPts.values());
-  if(a.length<2)return 0;
-  return Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);
-};
-function adjStart(){
-  if(!adjT)return;
-  adjG={c:adjAvg(),d:adjDist(),x:adjT.st.x,y:adjT.st.y,scale:adjT.st.scale,n:adjPts.size};
-}
-adjCv.addEventListener("pointerdown",e=>{
-  if(!adjT)return;
-  adjCv.setPointerCapture(e.pointerId);
-  adjPts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  adjStart();
-  e.preventDefault();
-});
-adjCv.addEventListener("pointermove",e=>{
-  if(!adjT||!adjPts.has(e.pointerId))return;
-  adjPts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  if(!adjG)return;
-  const rect=adjCv.getBoundingClientRect();
-  const k=adjT.cw/rect.width;
-  const c=adjAvg();
-  adjT.st.x=adjG.x+(c.x-adjG.c.x)*k;
-  adjT.st.y=adjG.y+(c.y-adjG.c.y)*k;
-  if(adjPts.size>=2&&adjG.d>0){
-    const r=adjDist()/adjG.d;
-    adjT.st.scale=Math.min(4,Math.max(0.5,adjG.scale*r));
-  }
-  drawAdjust();draw();
-  e.preventDefault();
-},{passive:false});
-function adjEnd(e){
-  if(!adjPts.has(e.pointerId))return;
-  adjPts.delete(e.pointerId);
-  if(adjPts.size)adjStart();else adjG=null;
-  scheduleSave();
-}
-adjCv.addEventListener("pointerup",adjEnd);
-adjCv.addEventListener("pointercancel",adjEnd);
-adjCv.addEventListener("wheel",e=>{
-  if(!adjT)return;
-  adjT.st.scale=Math.min(4,Math.max(0.5,adjT.st.scale*(e.deltaY<0?1.06:0.94)));
-  drawAdjust();draw();scheduleSave();
-  e.preventDefault();
-},{passive:false});
-document.addEventListener("keydown",e=>{
-  if(e.key!=="Escape")return;
-  if(!adjModal.hidden)closeAdjust();
-  else if(!fmtModal.hidden)closeFmt();
-  else setHelp(false);
-});
-
-/* ---- ヘルプ ---- */
-const helpModal=document.getElementById("helpModal");
-const setHelp=open=>{if(helpModal)helpModal.hidden=!open};
-
-/* ---- 自動保存（IndexedDB） ---- */
-let restoring=false,saveTimer=null;
-function scheduleSave(){
-  if(restoring)return;
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(saveAll,700);
-}
-function idbOpen(){
-  return new Promise((res,rej)=>{
-    const r=indexedDB.open("tsumugiStore",1);
-    r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("kv"))r.result.createObjectStore("kv")};
-    r.onsuccess=()=>res(r.result);r.onerror=()=>rej(r.error);
-  });
-}
-async function idbPut(k,v){
-  const db=await idbOpen();
-  return new Promise((res,rej)=>{
-    const tx=db.transaction("kv","readwrite");
-    tx.objectStore("kv").put(v,k);
-    tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);
-  });
-}
-async function idbGet(k){
-  const db=await idbOpen();
-  return new Promise((res,rej)=>{
-    const tx=db.transaction("kv","readonly");
-    const rq=tx.objectStore("kv").get(k);
-    rq.onsuccess=()=>res(rq.result);rq.onerror=()=>rej(rq.error);
-  });
-}
-async function idbDel(k){
-  const db=await idbOpen();
-  return new Promise((res,rej)=>{
-    const tx=db.transaction("kv","readwrite");
-    tx.objectStore("kv").delete(k);
-    tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);
-  });
-}
-function shrinkToData(img){
-  const max=1800;
-  const sc=Math.min(1,max/Math.max(img.width,img.height));
-  const c=document.createElement("canvas");
-  c.width=Math.max(1,Math.round(img.width*sc));
-  c.height=Math.max(1,Math.round(img.height*sc));
-  c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-  return c.toDataURL("image/jpeg",0.85);
-}
-function loadImgFrom(data){
-  return new Promise(res=>{
-    const im=new Image();
-    im.onload=()=>res(im);im.onerror=()=>res(null);im.src=data;
-  });
-}
-function snapshot(){
-  const o={f:{},extra:pageSnapshot(),img:{}};
-  document.querySelectorAll("#ctl input[id],#ctl select[id],#ctl textarea[id]").forEach(el=>{
-    if(el.type==="file")return;
-    o.f[el.id]=el.type==="checkbox"?el.checked:el.value;
-  });
-  if(typeof SAVE_IMAGES==="undefined"||SAVE_IMAGES){
-    Object.keys(IMG).forEach(k=>{
-      const st=IMG[k];
-      if(st&&st.data)o.img[k]={data:st.data,x:st.x,y:st.y,scale:st.scale};
-    });
-  }
-  return o;
-}
-async function saveAll(){try{await idbPut(STORE_KEY,snapshot())}catch(e){}}
-async function restoreAll(){
-  let o=null;
-  try{o=await idbGet(STORE_KEY)}catch(e){}
-  if(!o)return;
-  restoring=true;
-  try{
-    if(o.extra)pageRestore(o.extra);
-    pageRebuild();
-    Object.keys(o.f||{}).forEach(id=>{
-      const el=document.getElementById(id);
-      if(!el||el.type==="file")return;
-      if(el.type==="checkbox")el.checked=!!o.f[id];else el.value=o.f[id];
-    });
-    for(const k of Object.keys(o.img||{})){
-      const st=IMG[k];
-      if(!st)continue;
-      const rec=o.img[k];
-      const im=await loadImgFrom(rec.data);
-      if(!im)continue;
-      st.img=im;st.data=rec.data;st.x=rec.x||0;st.y=rec.y||0;st.scale=rec.scale||1;
-      const th=document.getElementById("thumb-"+k);
-      if(th)th.src=rec.data;
-    }
-    pageAfterRestore();
-  }catch(e){}
-  restoring=false;
-  draw();
-}
-function bindAutoSave(){
-  const box=document.getElementById("ctl");
-  box.addEventListener("input",scheduleSave);
-  box.addEventListener("change",scheduleSave);
-  document.addEventListener("click",()=>scheduleSave());
-  const cl=document.getElementById("clearSaved");
-  if(cl)cl.addEventListener("click",async()=>{
-    if(!confirm("この画面に保存されている入力内容と画像を消します。よろしいですか？"))return;
-    try{await idbDel(STORE_KEY)}catch(e){}
-    location.reload();
-  });
-}
-
 
 /* ---- 入力欄の組み立て ---- */
 function renderItems(){
@@ -737,7 +359,7 @@ function renderItems(){
     const listPart=`
       <div class="mode-row">
         <div class="seg small" data-seg="dir" data-i="${i}">
-          <button type="button" data-val="v" class="${it.dir==="v"?"on":""}">紞並び</button>
+          <button type="button" data-val="v" class="${it.dir==="v"?"on":""}">縦並び</button>
           <button type="button" data-val="h" class="${it.dir==="h"?"on":""}">横並び</button>
         </div>
       </div>${li}${addLi}`;
@@ -806,7 +428,7 @@ function descLines(it,maxW){
   return wrapByWidth(ctx,arr.map(s=>"・"+s).join("　"),descConf,maxW);
 }
 function layout(scale){
-  const M=Math.round(96*1),IND=Math.round(44*scale);
+  const M=96,IND=Math.round(44*scale);
   const L=M,R=W-M,maxW=R-L-IND;
   const blocks=[];
   let h=0;
@@ -857,6 +479,8 @@ function draw(){
     sc=Math.max(0.55,(bottom-top)/L.h);
     L=layout(sc);
   }
+  // 55% まで縮めても入りきらない（下にはみ出す）か
+  const overflow=L.h>bottom-top+1;
   const nc=Object.assign({},nameConf,{size:nameConf.size*sc});
   const pc=Object.assign({},priceConf,{size:priceConf.size*sc});
   const dcf=Object.assign({},descConf,{size:descConf.size*sc});
@@ -864,7 +488,9 @@ function draw(){
   L.blocks.forEach(b=>{
     if(b.nh){
       cy+=nc.size*0.92;
-      if(b.name)drawLine(ctx,b.name,L.L,cy,nc,"left");
+      // 料理名が長いときは、値段と重ならないよう料理名だけ小さくする
+      const pw=b.price?measureW(ctx,b.price,pc)+Math.round(36*sc):0;
+      if(b.name)drawLine(ctx,b.name,L.L,cy,fitConf(ctx,b.name,nc,L.R-L.L-pw,14),"left");
       if(b.price)drawLine(ctx,b.price,L.R,cy,pc,"right");
       cy+=nc.size*0.33;
     }
@@ -883,7 +509,12 @@ function draw(){
     drawLine(ctx,shop,W-96,H-110,shopConf,"right");
   }
   const n=document.getElementById("fitNote");
-  if(n)n.textContent=sc<1?"※ 用紙に入れるため、文字を "+Math.round(sc*100)+"% に縮めて表示しています。":"※ 用紙に入りきらないときは自動で少し縮めて表示します。";
+  if(n){
+    n.textContent=overflow?"※ 文字を "+Math.round(sc*100)+"% まで縮めても用紙に入りきりません。メニューや説明を減らすか、文字を小さくしてください。"
+      :sc<1?"※ 用紙に入れるため、文字を "+Math.round(sc*100)+"% に縮めて表示しています。":"※ 用紙に入りきらないときは自動で少し縮めて表示します。";
+    n.style.color=overflow?"#bd6b62":"";
+    n.style.fontWeight=overflow?"700":"";
+  }
 }
 /* ---- 書式 ---- */
 const FMT={title:()=>[titleConf,"タイトルの書式",30,160],
@@ -916,9 +547,7 @@ function pageAfterRestore(){}
 document.getElementById("ctl").addEventListener("input",draw);
 document.getElementById("ctl").addEventListener("change",draw);
 document.getElementById("export").addEventListener("click",()=>{
-  const a=document.createElement("a");
-  a.download=`tsumugi_gohan_menu_${fileStamp()}.png`;
-  a.href=canvas.toDataURL("image/png");a.click();
+  exportPng(canvas,`tsumugi_gohan_menu_${fileStamp()}.png`,{dpi:300});
 });
 renderItems();
 bindAutoSave();

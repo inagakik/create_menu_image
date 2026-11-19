@@ -190,17 +190,17 @@
     <div class="preview-wrap"><canvas id="canvas" width="1080" height="1080"></canvas></div>
   </section>
 
-  <section class="panel controls">
+  <section class="panel controls" id="ctl">
     <div class="group">
       <label class="title">タイトル</label>
       <div class="row">
         <input id="headline" type="text" value="本日のランチ">
-        <input id="dateText" type="date" aria-label="日付">
+        <input id="dateText" type="date" aria-label="日付" data-nosave>
       </div>
       <div id="tgRows">
       <div class="row item" id="tgrow-0"><button class="mini" type="button" data-tgdel="0" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-0" type="text" value="" placeholder="写真に重なる一言（1行目）"><button class="mini gear" type="button" data-tgset="0" title="この行の書式" aria-label="この行の書式">書式</button></div>
       <div class="row item" id="tgrow-1"><button class="mini" type="button" data-tgdel="1" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-1" type="text" value="" placeholder="写真に重なる一言（2行目）"><button class="mini gear" type="button" data-tgset="1" title="この行の書式" aria-label="この行の書式">書式</button></div>
-      <div class="row item" id="tgrow-2"><button class="mini" type="button" data-tgdel="2" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-2" type="text" value="" placeholder="写真に重なる一言（3行目）"><button class="mini gear" type="button" data-tgset="2" title="この行の書式" aria-label="この��の書式">書式</button></div>
+      <div class="row item" id="tgrow-2"><button class="mini" type="button" data-tgdel="2" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-2" type="text" value="" placeholder="写真に重なる一言（3行目）"><button class="mini gear" type="button" data-tgset="2" title="この行の書式" aria-label="この行の書式">書式</button></div>
       <div class="row item" id="tgrow-3"><button class="mini" type="button" data-tgdel="3" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-3" type="text" value="" placeholder="写真に重なる一言（4行目）"><button class="mini gear" type="button" data-tgset="3" title="この行の書式" aria-label="この行の書式">書式</button></div>
       <div class="row item" id="tgrow-4"><button class="mini" type="button" data-tgdel="4" title="この行を削除" aria-label="この行を削除">&minus;</button><input id="tg-4" type="text" value="" placeholder="写真に重なる一言（5行目）"><button class="mini gear" type="button" data-tgset="4" title="この行の書式" aria-label="この行の書式">書式</button></div>
       </div>
@@ -232,28 +232,28 @@
 </div>
 
 
-<div class="modal" id="tgModal" hidden>
-  <div class="modal-back" id="tgSetBack"></div>
-  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="tgSetTitle">
+<div class="modal" id="fmtModal" hidden>
+  <div class="modal-back" id="fmtBack"></div>
+  <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="fmtTitle">
     <div class="modal-head">
-      <strong id="tgSetTitle">1行目の書式</strong>
-      <button class="modal-close" id="tgSetClose" type="button" aria-label="閉じる">&times;</button>
+      <strong id="fmtTitle">1行目の書式</strong>
+      <button class="modal-close" id="fmtClose" type="button" aria-label="閉じる">&times;</button>
     </div>
     <div class="modal-body">
       <div class="set-row">
         <span class="key">文字サイズ</span>
-        <input id="tgSize" type="range" min="14" max="64" step="1" value="22" aria-label="文字サイズ">
-        <span class="val" id="tgSizeVal">22</span>
+        <input id="fmtSize" type="range" min="14" max="64" step="1" value="22" aria-label="文字サイズ">
+        <span class="val" id="fmtSizeVal">22</span>
       </div>
       <div class="set-row">
         <span class="key">フォント</span>
-        <select id="tgFont" aria-label="フォント"></select>
-        <button class="mini gear" id="tgFontLoad" type="button" title="この端末に入っているフォントを一覧に追加">端末から読込</button>
+        <select id="fmtFont" class="fontsel" aria-label="フォント"></select>
+        <button class="mini gear" id="fontLoad" type="button" title="この端末に入っているフォントを一覧に追加">端末から読込</button>
       </div>
-      <div class="set-row note" id="tgFontNote" hidden><span class="key"></span><span class="msg"></span></div>
-      <div class="set-row">
+      <div class="set-row note" id="fontNote" hidden><span class="msg"></span></div>
+      <div class="set-row" id="fmtAlignRow">
         <span class="key">揃え</span>
-        <div class="seg" id="tgAlign">
+        <div class="seg" id="fmtAlign">
           <button type="button" data-align="left">左寄せ</button>
           <button type="button" data-align="center">中央</button>
           <button type="button" data-align="right">右寄せ</button>
@@ -261,23 +261,22 @@
       </div>
       <div class="set-row">
         <span class="key">文字色</span>
-        <input id="tgColor" type="color" value="#315b78" aria-label="文字色">
+        <input id="fmtColor" type="color" value="#315b78" aria-label="文字色">
       </div>
       <div class="set-row">
         <span class="key">縁取り</span>
-        <label class="chk"><input id="tgStrokeOn" type="checkbox"> つける</label>
-        <input id="tgStrokeColor" type="color" value="#ffffff" aria-label="縁取りの色">
+        <label class="chk"><input id="fmtStrokeOn" type="checkbox"> つける</label>
+        <input id="fmtStrokeColor" type="color" value="#ffffff" aria-label="縁取りの色">
       </div>
-      <div class="set-row">
+      <div class="set-row" id="fmtBgRow">
         <span class="key">背景色</span>
-        <label class="chk"><input id="tgBgOn" type="checkbox"> つける</label>
-        <input id="tgBgColor" type="color" value="#f8f3e8" aria-label="背景の色">
+        <label class="chk"><input id="fmtBgOn" type="checkbox"> つける</label>
+        <input id="fmtBgColor" type="color" value="#f8f3e8" aria-label="背景の色">
       </div>
       <div class="set-note">設定はこの行だけに適用されます。「端末から読込」を押すと、このパソコンにインストール済みのフォントが選択肢に並びます（フォントファイルは同梱していません）。</div>
     </div>
   </div>
 </div>
-
 <div class="modal" id="adjModal" hidden>
   <div class="modal-back" id="adjBack"></div>
   <div class="modal-card" role="dialog" aria-modal="true" aria-labelledby="adjTitle">
@@ -300,10 +299,11 @@
     </div>
   </div>
 </div>
+<script src="common.js"></script>
 <script>
+const STORE_KEY="lunch";
 const W=1080,H=1080;
 const canvas=document.getElementById("canvas"), ctx=canvas.getContext("2d");
-const LOGO_SRC="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAQDAwMDAgQDAwMEBAQFBgoGBgUFBgwICQcKDgwPDg4MDQ0PERYTDxAVEQ0NExoTFRcYGRkZDxIbHRsYHRYYGRj/2wBDAQQEBAYFBgsGBgsYEA0QGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBgYGBj/wAARCAFAAUADASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDxmiiivvj8xCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAo9+x6UqFfMHmZ25GcdxSvI8h+Y8DoOw9hQA2iiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAOe1HbNAJHKsVPqDg0+RlchgMMfvehOetADKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAoooo8hXCiiim1YqzCijB9KKS10CwUUUUCCiiigAo60Dk4r6A1T4HeGtO/Y9g+JrahejWjZw6g26QeQVkdVEe3GRhXHOeorGtXhR5efq7HTQwtSum4dNT5/ooyD0II9Qc0hIUZYgAdycVsc1haKO1FABRRRQAVfstD1nUrC6vtO0q9u7a0Aa4mggaRIR/tEDitLwd4J8SePfES6J4W01r272+Y+WCJEmcbmY8AZIr7h+BHws1v4dfD3UvD/AIpuNLuxfzmcxWgZgqtGEZHZgN3TsPXk1w4zHRwy01fY9LAZfPFS10j3Pz97A+tFfRv7QnwX+Hfwz8FWN/4fv76PU7m78tLO5uFkEsWCWIG0EBflGfcCuU+CfwTs/i1p2uz3HiKTTZrApHFFHEshdmUkM4P8HGOOetXHHU5UvbPYznl9WNf2CtzHj2DjpSV9LeGPh98JtI+E3irw78STZ6b4z0yWcSy3E+yfAXdBJbgkeYjDBwAc5INfNCklFLfeIBP1rShiFWvZbGWJw0qFuZ7i0UUVucwUUUUAFFFFABRRRQAUUUUAFFFFABRRRQAUUUUAFdL4B8F3/wAQfH9l4U026t7W4ut5864zsRVUseByTgVzVT2d9e6dfxX2nXc9pdQndHPA5R0PqGHINTOMnFqOjNKbipJzV0fX+lfsmeANAslu/G3i28uyBlyJEsoAR15OWI/Grn2T9kPwifInl8M3Ui/KxlaXUDn3xvAP5V8c6lq2q6zcNPq+p3uoSscl7ud5Sf8Avomqfbrj6V5n9n1J/wAWo/kep/adGn/ApL56n2oPEf7H98Ra/ZfCaFztBOkyRY/4H5Y2/XIrmPir+zd4ZuvBEvjb4Tz744oTdGwin8+C4iAyWhckkMBk4JIPTg18pfU/nX2n+x/calN8I9at7t3k0+HUilsr8hMxq0gGe2SDj1JrDEYeWDiq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ooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAOgz2FA5OAcn0rf8Earouh/EPSNX8RaWdU0y1uBJcWgAbzVweMHg8kHB4OK+uYfiP+zF8Q7RLLW9P0m0cgKqapp4tmX0AlQYH4NXHicVKi0uRteR6GEwccRF3mk+zPiejBIJA6V9G/Hb4L/D3wp8P08b+CNcKwzXEcSWQuBcRTByQTG/J468kjjtVX9mrwh8LvG9rruheLtPivNdfD2omZlKwbcFoiD98Mee+Me9T9ej7J1UnYP7Pmqyoyauzw1NA1yTw6+vx6PfvpUb+W98sDGFW9C+MCs6vsubxP4d+B/w+1H4T/EK1k1OweC4fSpraLet/bSM37uX+5KrHBJ4wVIOeK+MwPrWmFxLr8zasuhOMwscPaKld9fIWjGTgUV6B8F/AEHxJ+Ltl4dvZJY7ARSXV28Rw3loBwD2JZlH41tVqKnFzeyOWlSlVmoRWrPP6K9L+O3gbw/8Pfi7L4e8NTzvZi0inaOeTe0Ltuyu7qRgKef71cHo2iax4i1ZNL0LS7rUb6QEpb2yF3YDqcDtRSqxnBVFsVUoShN0uqM89K7jUPhP410r4UWvxFvNPhTRLnYVYTAyKrnCOydlJIA5J5GcVs6f+zt8YtRUFPBk9vkf8vdxFCR+bV9ZXvw28R65+yPa/Dq6ezs9bGnw27GWQtEjxuCMsoORhRyK4cXmEKbiqclvqelg8snVU/aRastPU/P2ivXviR+z14p+Gvgj/hJ9R1jSr+2WdIJo7XeGjLnCn5h8wzx7V5DXdSrQqrmg7o82tQnRly1FZhRRRWhiGR61NJZ3cVnHdzWlxHbykiOZ4mVHI6hWIwfwrt/g98PpfiT8VrDQWVvsEf8ApN/IP4IFIyM+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";
 const logoImg=new Image();
 let logoReady=false;
 logoImg.onload=()=>{logoReady=true;draw()};
@@ -316,9 +316,6 @@ const photoDefs=[
   {id:"salad",label:"サラダ",input:"saladName",labelInput:"saladLabel",shape:"circle"},
   {id:"dessert",label:"デザート",input:"dessertName",labelInput:"dessertLabel",shape:"circle"}
 ];
-const val=id=>{const el=document.getElementById(id);return el?el.value:""};
-const on=id=>{const el=document.getElementById(id);return !!(el&&el.checked)};
-const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const WEEKDAYS=["日","月","火","水","木","金","土"];
 // "2026-09-06" -> "9月6日（日）"空欄なら日付を描かない）
 function dateLabel(){
@@ -329,14 +326,15 @@ function dateLabel(){
   if(isNaN(dt))return "";
   return `${m}月${d}日（${WEEKDAYS[dt.getDay()]}）`;
 }
-const photos={};
 const state={};
 const allDefs=[plateDef,...photoDefs];
-allDefs.forEach(p=>state[p.id]={x:0,y:0,scale:1,img:null,drag:false,sx:0,sy:0,ox:0,oy:0});
+allDefs.forEach(p=>state[p.id]={x:0,y:0,scale:1,img:null,thumb:null,drag:false,sx:0,sy:0,ox:0,oy:0});
 // offsets used when the main-dish photo stands in for a missing plate photo
 state.mainBig={x:0,y:0,scale:1,img:null,drag:false,sx:0,sy:0,ox:0,oy:0};
 // drag offset for the message that sits on the photo
 state.tagline={x:0,y:0,scale:1,img:null,drag:false,sx:0,sy:0,ox:0,oy:0};
+// common.js の保存・画像まわりはこの名前で参照する
+const IMG=state;
 function bigState(){return state.plate.img?state.plate:(state.main.img?state.mainBig:null)}
 function bigImage(){return state.plate.img||state.main.img||null}
 function allStates(){return [state.plate,state.mainBig,state.tagline,...photoDefs.map(p=>state[p.id])]}
@@ -353,9 +351,6 @@ function menuLayout(){
   return defs.map((p,i)=>({def:p,x:start+i*gap}));
 }
 
-function roundedRect(c,x,y,w,h,r){
-  c.beginPath();c.roundRect(x,y,w,h,r);c.closePath();
-}
 function paper(){
   ctx.fillStyle="#f8f3e8";ctx.fillRect(0,0,W,H);
   // subtle paper flecks
@@ -394,17 +389,6 @@ function drawLogo(cx,cy,size){
 }
 // message on the photo: size, line height, and padding from the photo edge
 // message on the photo: every line keeps its own format
-const TG_FONTS=[
-  {id:"mincho",label:"明朝（標準）",css:'"Noto Serif JP","Yu Mincho","MS Mincho",serif'},
-  {id:"gothic",label:"ゴシック",css:'"Noto Sans JP","Yu Gothic",Meiryo,sans-serif'}
-];
-function fontCss(id){
-  if(typeof id==="string"&&id.slice(0,6)==="local:"){
-    const fam=id.slice(6).replace(/["\\]/g,"");
-    return '"'+fam+'","Noto Sans JP","Yu Gothic",sans-serif';
-  }
-  const f=TG_FONTS.find(x=>x.id===id);return f?f.css:TG_FONTS[0].css
-}
 const TG_MAX=5, TG_PAD=34;
 const tgDefault=()=>({size:22,font:"mincho",align:"right",color:"#315b78",
   strokeOn:false,strokeColor:"#ffffff",bgOn:false,bgColor:"#f8f3e8"});
@@ -625,24 +609,14 @@ function rebuildControls(){
     const dish=p.id==="plate"?"":val(p.input).trim();
     const note=p.id==="plate"
       ?`大きい枠の写真/未設定なら「${esc(firstLabel)}」の写真を表示`
-      :(dish?`料理名：${esc(dish)}`:"ク��ックして写真を選択");
+      :(dish?`料理名：${esc(dish)}`:"クリックして写真を選択");
     row.innerHTML=`<img class="thumb" id="thumb-${p.id}" alt=""><div><div class="photo-name">${esc(p.id==="plate"?p.label:(val(p.labelInput).trim()||p.label))}</div><div class="photo-note">${note}</div></div><button class="secondary">選択</button>`;
     const th=row.querySelector(".thumb");if(state[p.id].thumb)th.src=state[p.id].thumb;
     const input=document.createElement("input");input.type="file";input.accept="image/*";input.hidden=true;
     row.querySelector("button").onclick=()=>input.click();
-    input.onchange=()=>{if(input.files[0])loadPhoto(p.id,input.files[0]);};
+    input.onchange=()=>{const f=input.files[0];input.value="";if(f)loadImageFile(p.id,f);};
     row.appendChild(input);box.appendChild(row);
   });
-}
-function loadPhoto(id,file){
-  const url=URL.createObjectURL(file),img=new Image();
-  img.onload=()=>{state[id].img=img;state[id].x=state[id].y=0;state[id].scale=1;
-    const data=shrinkToData(img);
-    state[id].data=data;
-    state[id].thumb=data||url;
-    const t=document.getElementById("thumb-"+id);if(t)t.src=data||url;
-    draw();scheduleSave();};
-  img.src=url;
 }
 function pointerPos(e){
   const r=canvas.getBoundingClientRect();
@@ -725,8 +699,8 @@ function renderRows(){
   document.getElementById("addItem").hidden=order.length>=5;
 }
 function clearSlot(id){
-  const def=photoDefs.find(p=>p.id===id), st=state[id];
-  st.img=null;st.thumb=null;st.x=0;st.y=0;st.scale=1;
+  const def=photoDefs.find(p=>p.id===id);
+  clearImage(id);
   document.getElementById(def.labelInput).value="";
   document.getElementById(def.input).value="";
 }
@@ -783,110 +757,18 @@ document.getElementById("tgAdd").addEventListener("click",()=>{
   document.getElementById("tg-"+i).focus();
 });
 
-// ---- per-line format modal ----
-const tgModal=document.getElementById("tgModal"), tgFontSel=document.getElementById("tgFont");
-let tgEditing=0;
-const FONT_STORE="tsumugiLocalFonts";
-let localFams=[];
-try{const s=localStorage.getItem(FONT_STORE);if(s)localFams=JSON.parse(s)||[]}catch(e){localFams=[]}
-function buildFontOptions(){
-  const keep=tgFontSel.value;
-  tgFontSel.innerHTML="";
-  const g1=document.createElement("optgroup");g1.label="標準";
-  TG_FONTS.forEach(f=>{
-    const o=document.createElement("option");o.value=f.id;o.textContent=f.label;g1.appendChild(o);
-  });
-  tgFontSel.appendChild(g1);
-  if(localFams.length){
-    const g2=document.createElement("optgroup");g2.label="この端末のフォント";
-    localFams.forEach(fam=>{
-      const o=document.createElement("option");o.value="local:"+fam;o.textContent=fam;g2.appendChild(o);
-    });
-    tgFontSel.appendChild(g2);
-  }
-  tgFontSel.value=keep;
-}
-function ensureFontOption(v){
-  if(!v||tgFontSel.querySelector('option[value="'+CSS.escape(v)+'"]'))return;
-  if(v.slice(0,6)!=="local:")return;
-  localFams.push(v.slice(6));buildFontOptions();
-}
-function fontNote(msg){
-  const row=document.getElementById("tgFontNote");
-  row.hidden=!msg;row.querySelector(".msg").textContent=msg||"";
-}
-async function loadLocalFonts(){
-  if(!window.queryLocalFonts){
-    fontNote("このブラウザでは端末のフォント一覧を取得できません（パソコンの Chrome / Edge のみ対応）。標準の明朝・ゴシックでの表示になります。");
-    return;
-  }
-  try{
-    const fonts=await window.queryLocalFonts();
-    const set=new Set();
-    fonts.forEach(f=>{if(f.family)set.add(f.family)});
-    localFams=Array.from(set).sort((a,b)=>a.localeCompare(b,"ja"));
-    try{localStorage.setItem(FONT_STORE,JSON.stringify(localFams))}catch(e){}
-    buildFontOptions();
-    fontNote(localFams.length+"件のフォントを読み込みました。一覧の「この端末のフォント」から選べます（他の人の端末にないフォントは標準の書体で表示されます）。");
-  }catch(e){
-    fontNote("フォントの読み込みが許可されませんでした。ブラウザのアドレスバーのアイコンから「フォント」を許可にして、もう一度お試しください。");
-  }
-}
-buildFontOptions();
-document.getElementById("tgFontLoad").addEventListener("click",loadLocalFonts);
-function paintTgAlign(a){
-  document.querySelectorAll("#tgAlign button").forEach(b=>b.classList.toggle("on",b.dataset.align===a));
-}
-function openTgSet(i){
-  tgEditing=i;
-  const c=tgConf[i];
-  document.getElementById("tgSetTitle").textContent=(tgOrder.indexOf(i)+1)+"行目の書式";
-  document.getElementById("tgSize").value=c.size;
-  document.getElementById("tgSizeVal").textContent=c.size;
-  ensureFontOption(c.font);
-  tgFontSel.value=c.font;
-  fontNote(localFams.length?"":"「端末から読込」を押すと、このパソコンのフォントが選択肢に並びます。");
-  document.getElementById("tgColor").value=c.color;
-  document.getElementById("tgStrokeOn").checked=c.strokeOn;
-  document.getElementById("tgStrokeColor").value=c.strokeColor;
-  document.getElementById("tgBgOn").checked=c.bgOn;
-  document.getElementById("tgBgColor").value=c.bgColor;
-  paintTgAlign(c.align);
-  tgModal.hidden=false;
-}
+// ---- per-line format: common.js の書式ダイアログを使う ----
 document.querySelectorAll("button.gear[data-tgset]").forEach(b=>{
-  b.addEventListener("click",()=>openTgSet(Number(b.dataset.tgset)));
-});
-const closeTgSet=()=>{tgModal.hidden=true};
-document.getElementById("tgSetClose").addEventListener("click",closeTgSet);
-document.getElementById("tgSetBack").addEventListener("click",closeTgSet);
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeTgSet()});
-function bindTg(id,fn){
-  const el=document.getElementById(id);
-  const handler=()=>{fn(tgConf[tgEditing],el);draw()};
-  el.addEventListener("input",handler);el.addEventListener("change",handler);
-}
-bindTg("tgSize",(c,el)=>{c.size=Number(el.value);document.getElementById("tgSizeVal").textContent=el.value});
-bindTg("tgFont",(c,el)=>{c.font=el.value});
-bindTg("tgColor",(c,el)=>{c.color=el.value});
-bindTg("tgStrokeOn",(c,el)=>{c.strokeOn=el.checked});
-bindTg("tgStrokeColor",(c,el)=>{c.strokeColor=el.value});
-bindTg("tgBgOn",(c,el)=>{c.bgOn=el.checked});
-bindTg("tgBgColor",(c,el)=>{c.bgColor=el.value});
-document.querySelectorAll("#tgAlign button").forEach(b=>{
-  b.addEventListener("click",()=>{tgConf[tgEditing].align=b.dataset.align;paintTgAlign(b.dataset.align);draw()});
+  b.addEventListener("click",()=>{
+    const i=Number(b.dataset.tgset);
+    openFmt(tgConf[i],(tgOrder.indexOf(i)+1)+"行目の書式",14,64);
+  });
 });
 renderTgRows();
-document.getElementById("reset").onclick=()=>{allStates().forEach(st=>{st.x=st.y=0;st.scale=1});draw()};
+document.getElementById("reset").onclick=()=>{allStates().forEach(st=>{st.x=st.y=0;st.scale=1});draw();scheduleSave()};
 // file name stamp: the chosen date, or today when the date field is empty
-function fileStamp(){
-  const v=val("dateText");
-  const d=v?new Date(v+"T00:00:00"):new Date();
-  const p=n=>String(n).padStart(2,"0");
-  return `${d.getFullYear()}${p(d.getMonth()+1)}${p(d.getDate())}`;
-}
 document.getElementById("export").onclick=()=>{
-  const a=document.createElement("a");a.download=`tsumugi_gohan_${fileStamp()}.png`;a.href=canvas.toDataURL("image/png");a.click();
+  exportPng(canvas,`tsumugi_gohan_${fileStamp(val("dateText"))}.png`);
 };
 (function(){
   const t=new Date();
@@ -894,212 +776,24 @@ document.getElementById("export").onclick=()=>{
   document.getElementById("dateText").value=`${t.getFullYear()}-${p(t.getMonth()+1)}-${p(t.getDate())}`;
 })();
 rebuildControls();draw();
-// help modal
-const helpModal=document.getElementById("helpModal");
-const setHelp=open=>{if(helpModal)helpModal.hidden=!open};
-document.addEventListener("keydown",e=>{if(e.key==="Escape")setHelp(false)});
-
-/* ---- pictures move only inside this dialog (easier on a phone) ---- */
-const adjModal=document.getElementById("adjModal");
-const adjCv=document.getElementById("adjCanvas"), adjCtx=adjCv.getContext("2d");
-let adjT=null;
-function drawAdjust(){
-  if(!adjT)return;
-  const f=adjT.f, cw=Math.round(adjT.cw*f), ch=Math.round(adjT.ch*f);
-  if(adjCv.width!==cw||adjCv.height!==ch){adjCv.width=cw;adjCv.height=ch;}
-  const st=adjT.st, img=adjT.img;
-  adjCtx.clearRect(0,0,cw,ch);
-  adjCtx.fillStyle="#dce8ed";adjCtx.fillRect(0,0,cw,ch);
-  adjCtx.save();
-  if(adjT.shape==="circle"){adjCtx.beginPath();adjCtx.arc(cw/2,ch/2,Math.min(cw,ch)/2,0,Math.PI*2);adjCtx.clip();}
-  else{roundedRect(adjCtx,0,0,cw,ch,32*f);adjCtx.clip();}
-  const iw=img.width, ih=img.height;
-  const sc=Math.max(cw/iw,ch/ih)*st.scale;
-  adjCtx.drawImage(img,cw/2-iw*sc/2+st.x*f,ch/2-ih*sc/2+st.y*f,iw*sc,ih*sc);
-  adjCtx.restore();
-  const pct=Math.round(st.scale*100);
-  document.getElementById("adjZoom").value=pct;
-  document.getElementById("adjZoomVal").textContent=pct+"%";
-}
-function openAdjust(t){
-  adjT=t;
-  document.getElementById("adjTitle").textContent=t.title;
-  adjModal.hidden=false;
-  drawAdjust();
-}
-function closeAdjust(){adjModal.hidden=true;adjT=null;adjPts.clear();adjG=null;draw();scheduleSave();}
-document.getElementById("adjClose").addEventListener("click",closeAdjust);
-document.getElementById("adjBack").addEventListener("click",closeAdjust);
-document.getElementById("adjDone").addEventListener("click",closeAdjust);
-document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!adjModal.hidden)closeAdjust()});
-document.getElementById("adjReset").addEventListener("click",()=>{
-  if(!adjT)return;
-  adjT.st.x=0;adjT.st.y=0;adjT.st.scale=1;drawAdjust();draw();
-});
-document.getElementById("adjZoom").addEventListener("input",e=>{
-  if(!adjT)return;
-  adjT.st.scale=Math.max(.5,Math.min(4,Number(e.target.value)/100));drawAdjust();draw();
-});
-const adjPts=new Map();
-let adjG=null;
-const adjAvg=a=>({x:a.reduce((s,p)=>s+p.x,0)/a.length,y:a.reduce((s,p)=>s+p.y,0)/a.length});
-const adjDist=a=>a.length<2?0:Math.hypot(a[0].x-a[1].x,a[0].y-a[1].y);
-function adjStart(){
-  if(!adjT)return;
-  const a=[...adjPts.values()], c=adjAvg(a);
-  adjG={n:a.length,cx:c.x,cy:c.y,d:adjDist(a),x:adjT.st.x,y:adjT.st.y,scale:adjT.st.scale};
-}
-adjCv.addEventListener("pointerdown",e=>{
-  if(!adjT)return;
-  e.preventDefault();
-  try{adjCv.setPointerCapture(e.pointerId)}catch(err){}
-  adjPts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  adjStart();
-});
-adjCv.addEventListener("pointermove",e=>{
-  if(!adjT||!adjG||!adjPts.has(e.pointerId))return;
-  adjPts.set(e.pointerId,{x:e.clientX,y:e.clientY});
-  const a=[...adjPts.values()];
-  if(a.length!==adjG.n){adjStart();return}
-  const rect=adjCv.getBoundingClientRect();
-  const k=rect.width?adjT.cw/rect.width:1;
-  const c=adjAvg(a);
-  adjT.st.x=adjG.x+(c.x-adjG.cx)*k;
-  adjT.st.y=adjG.y+(c.y-adjG.cy)*k;
-  if(a.length>=2&&adjG.d>0)adjT.st.scale=Math.max(.5,Math.min(4,adjG.scale*adjDist(a)/adjG.d));
-  drawAdjust();
-});
-function adjEnd(e){
-  if(!adjPts.has(e.pointerId))return;
-  adjPts.delete(e.pointerId);
-  if(adjPts.size)adjStart();
-  else{adjG=null;draw();scheduleSave();}
-}
-adjCv.addEventListener("pointerup",adjEnd);
-adjCv.addEventListener("pointercancel",adjEnd);
-adjCv.addEventListener("wheel",e=>{
-  if(!adjT)return;
-  e.preventDefault();
-  adjT.st.scale=Math.max(.5,Math.min(4,adjT.st.scale*(e.deltaY<0?1.06:.94)));
-  drawAdjust();draw();
-},{passive:false});
-
-/* ---- keeps the text and the chosen pictures even if the page reloads ---- */
-const STORE_KEY="lunch";
-let saveTimer=null, restoring=true;
-function scheduleSave(){
-  if(restoring)return;
-  clearTimeout(saveTimer);
-  saveTimer=setTimeout(saveAll,700);
-}
-function idbOpen(){
-  return new Promise((res,rej)=>{
-    const r=indexedDB.open("tsumugiStore",1);
-    r.onupgradeneeded=()=>{if(!r.result.objectStoreNames.contains("kv"))r.result.createObjectStore("kv")};
-    r.onsuccess=()=>res(r.result);
-    r.onerror=()=>rej(r.error);
-  });
-}
-async function idbPut(k,v){
-  const db=await idbOpen();
-  await new Promise((res,rej)=>{
-    const tx=db.transaction("kv","readwrite");
-    tx.objectStore("kv").put(v,k);
-    tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);
-  });
-}
-async function idbGet(k){
-  const db=await idbOpen();
-  return new Promise((res,rej)=>{
-    const tx=db.transaction("kv","readonly");
-    const q=tx.objectStore("kv").get(k);
-    q.onsuccess=()=>res(q.result);q.onerror=()=>rej(q.error);
-  });
-}
-async function idbDel(k){
-  const db=await idbOpen();
-  await new Promise((res,rej)=>{
-    const tx=db.transaction("kv","readwrite");
-    tx.objectStore("kv").delete(k);
-    tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error);
-  });
-}
-// a picture is kept as a shrunken JPEG so it survives a reload
-function shrinkToData(img){
-  try{
-    const max=1800, s=Math.min(1,max/Math.max(img.width,img.height));
-    const c=document.createElement("canvas");
-    c.width=Math.max(1,Math.round(img.width*s));
-    c.height=Math.max(1,Math.round(img.height*s));
-    c.getContext("2d").drawImage(img,0,0,c.width,c.height);
-    return c.toDataURL("image/jpeg",0.85);
-  }catch(e){return null}
-}
-function snapshot(){
-  const inputs={};
-  document.querySelectorAll("section.controls input").forEach(el=>{
-    if(!el.id||el.type==="file")return;
-    inputs[el.id]=el.type==="checkbox"?el.checked:el.value;
-  });
-  const pics={};
-  Object.keys(state).forEach(k=>{
-    const st=state[k];
-    pics[k]={x:st.x,y:st.y,scale:st.scale,data:st.data||null};
-  });
-  return {v:1,at:Date.now(),inputs,pics,
-    order:order.slice(),pool:pool.slice(),
-    tgOrder:tgOrder.slice(),tgPool:tgPool.slice(),
+/* ---- 保存・復元の連携（common.js から呼ばれる） ----
+   日付（dateText）は保存しない。開くたびに今日の日付になる */
+function pageSnapshot(){
+  return {order:order.slice(),pool:pool.slice(),tgOrder:tgOrder.slice(),tgPool:tgPool.slice(),
     tgConf:tgConf.map(c=>Object.assign({},c))};
 }
-async function saveAll(){try{await idbPut(STORE_KEY,snapshot())}catch(e){}}
-function loadImgFrom(data){
-  return new Promise(res=>{
-    const im=new Image();
-    im.onload=()=>res(im);im.onerror=()=>res(null);
-    im.src=data;
-  });
+function pageRestore(x){
+  const ids=photoDefs.map(p=>p.id);
+  const okIds=a=>Array.isArray(a)&&a.every(id=>ids.includes(id));
+  const okTg=a=>Array.isArray(a)&&a.every(i=>Number.isInteger(i)&&i>=0&&i<TG_MAX);
+  if(okIds(x.order)&&x.order.length&&okIds(x.pool)){order=x.order.slice();pool=x.pool.slice()}
+  if(okTg(x.tgOrder)&&x.tgOrder.length&&okTg(x.tgPool)){tgOrder=x.tgOrder.slice();tgPool=x.tgPool.slice()}
+  if(Array.isArray(x.tgConf))x.tgConf.forEach((c,i)=>{if(c&&tgConf[i])tgConf[i]=Object.assign(tgDefault(),c)});
 }
-async function restoreAll(){
-  let rec=null;
-  try{rec=await idbGet(STORE_KEY)}catch(e){}
-  if(rec){
-    if(rec.inputs)Object.entries(rec.inputs).forEach(([id,v])=>{
-      const el=document.getElementById(id);
-      if(!el)return;
-      if(el.type==="checkbox")el.checked=!!v;else el.value=v;
-    });
-    if(Array.isArray(rec.order))order=rec.order.slice();
-    if(Array.isArray(rec.pool))pool=rec.pool.slice();
-    if(Array.isArray(rec.tgOrder))tgOrder=rec.tgOrder.slice();
-    if(Array.isArray(rec.tgPool))tgPool=rec.tgPool.slice();
-    if(Array.isArray(rec.tgConf))rec.tgConf.forEach((c,i)=>{if(c&&tgConf[i])tgConf[i]=Object.assign(tgDefault(),c)});
-    if(rec.pics){
-      for(const k of Object.keys(rec.pics)){
-        const st=state[k], p=rec.pics[k];
-        if(!st||!p)continue;
-        st.x=p.x||0;st.y=p.y||0;st.scale=p.scale||1;
-        if(p.data){
-          const im=await loadImgFrom(p.data);
-          if(im){st.img=im;st.data=p.data;st.thumb=p.data;}
-        }
-      }
-    }
-    renderRows();renderTgRows();rebuildControls();
-  }
-  restoring=false;
-  draw();
-}
+function pageRebuild(){renderRows();renderTgRows()}
+function pageAfterRestore(){rebuildControls()}
+bindAutoSave();
 restoreAll();
-const ctlBox=document.querySelector("section.controls");
-ctlBox.addEventListener("input",scheduleSave);
-ctlBox.addEventListener("change",scheduleSave);
-document.addEventListener("click",()=>scheduleSave());
-document.getElementById("clearSaved").addEventListener("click",async()=>{
-  if(!confirm("\u4fdd\u5b58\u3055\u308c\u3066\u3044\u308b\u5165\u529b\u5185\u5bb9\u3068\u753b\u50cf\u3092\u6d88\u3057\u3066\u3001\u6700\u521d\u306e\u72b6\u614b\u306b\u623b\u3057\u307e\u3059\u3002\u3088\u308d\u3057\u3044\u3067\u3059\u304b\uff1f"))return;
-  restoring=true;
-  try{await idbDel(STORE_KEY)}catch(e){}
-  location.reload();
-});
 </script>
 </body>
 </html>
